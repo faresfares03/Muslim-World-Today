@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حاضر العالم الإسلامي | منصة التعلم التفاعلي</title>
+  <!-- خطوط عربية واضحة من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#f8faf9',
+            emeraldDark: '#0f5132',
+            emeraldMain: '#157347',
+            emeraldLight: '#e8f3ee',
+            goldHeritage: '#b8860b',
+            goldSoft: '#d4a338',
+            goldBg: '#fdf8ec',
+            slateText: '#1e293b',
+          },
+          fontFamily: {
+            sans: ['Cairo', 'Tajawal', 'Segoe UI', 'Tahoma', 'sans-serif'],
+            heading: ['Tajawal', 'Cairo', 'Segoe UI', 'Tahoma', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      background-color: #f8faf9;
+      color: #1e293b;
+      font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Tajawal', 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+    }
+    /* إخفاء شريط التمرير في شريط التبويبات السريع على الهاتف */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* حركة قلب البطاقات ثلاثية الأبعاد */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    /* نبض نقاط المضايق على الخريطة */
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); opacity: 0.9; }
+      70% { transform: scale(1.65); opacity: 0; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+    .strait-pulse {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pulseRing 2.2s infinite;
+    }
+    /* شريط تمرير أنيق للكمبيوتر */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #eef2f0; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0f5132; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- الرأس الثابت وشريط التنقل والتقدم -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20 gap-3">
+        <!-- الشعار والعنوان -->
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-emeraldDark to-emeraldMain text-white flex items-center justify-center shadow-md shrink-0">
+            <svg class="w-6 h-6 text-amber-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div class="truncate">
+            <h1 class="text-base sm:text-xl md:text-2xl font-bold text-emeraldDark leading-tight truncate">حاضر العالم الإسلامي</h1>
+            <p class="text-[11px] md:text-xs text-slate-500 truncate">د. تاج السر أحمد حران (1422هـ / 2001م)</p>
+          </div>
+        </div>
+
+        <!-- شريط التنقل للكمبيوتر -->
+        <nav class="hidden lg:flex items-center gap-1 bg-cream p-1.5 rounded-2xl border border-slate-200/80" aria-label="التنقل الرئيسي">
+          <button type="button" onclick="switchTab('lessons')" data-tab="lessons" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all">الملخص الشامل</button>
+          <button type="button" onclick="switchTab('simulations')" data-tab="simulations" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all">المحاكاة والرسوم</button>
+          <button type="button" onclick="switchTab('flashcards')" data-tab="flashcards" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all">بطاقات المراجعة</button>
+          <button type="button" onclick="switchTab('practice')" data-tab="practice" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all">الأسئلة والمذاكرات</button>
+          <button type="button" onclick="switchTab('exam')" data-tab="exam" class="nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all">الاختبار النهائي</button>
+        </nav>
+
+        <!-- مؤشر الإنجاز للكمبيوتر -->
+        <div class="hidden sm:flex flex-col items-end shrink-0">
+          <div class="flex items-center gap-2 text-xs font-bold text-emeraldDark">
+            <span>نسبة الإنجاز</span>
+            <span id="global-progress-text" class="text-goldHeritage">0%</span>
+          </div>
+          <div class="w-28 md:w-36 h-2 bg-slate-200 rounded-full overflow-hidden mt-1">
+            <div id="global-progress-bar" class="h-full bg-gradient-to-l from-emeraldMain to-goldSoft rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- مؤشر مختصر للهاتف -->
+        <div class="sm:hidden flex items-center gap-1.5 bg-emeraldLight px-2.5 py-1.5 rounded-xl shrink-0">
+          <span class="text-[11px] font-bold text-emeraldDark">الإنجاز:</span>
+          <span id="mobile-progress-text" class="text-xs font-extrabold text-goldHeritage">0%</span>
+        </div>
+      </div>
+
+      <!-- شريط التقدم للهاتف -->
+      <div class="sm:hidden pb-2">
+        <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+          <div id="mobile-progress-bar" class="h-full bg-gradient-to-l from-emeraldMain to-goldSoft rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- شريط تبويبات سريع وواضح للهاتف والأجهزة اللوحية (نقرة واحدة دون قوائم مخفية) -->
+      <div class="lg:hidden pb-2.5 pt-1 overflow-x-auto no-scrollbar">
+        <div class="flex items-center gap-1.5 min-w-max">
+          <button type="button" onclick="switchTab('lessons')" data-tab="lessons" class="nav-btn-mobile px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap">📚 الملخص الشامل</button>
+          <button type="button" onclick="switchTab('simulations')" data-tab="simulations" class="nav-btn-mobile px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap">🗺️ المحاكاة والرسوم</button>
+          <button type="button" onclick="switchTab('flashcards')" data-tab="flashcards" class="nav-btn-mobile px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap">🗂️ بطاقات المراجعة</button>
+          <button type="button" onclick="switchTab('practice')" data-tab="practice" class="nav-btn-mobile px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap">📝 الأسئلة والمذاكرات</button>
+          <button type="button" onclick="switchTab('exam')" data-tab="exam" class="nav-btn-mobile px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap">🎓 الاختبار النهائي</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- رسالة تنبيه لطيفة (بديل لـ alert) -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden bg-emeraldDark text-white px-5 py-3 rounded-2xl shadow-xl text-sm font-semibold flex items-center gap-2 border border-goldSoft/40 max-w-[90vw] text-center">
+    <span id="toast-msg"></span>
+  </div>
+
+  <!-- المحتوى الرئيسي: جميع الأقسام الخمسة أشقاء مباشرين داخل main -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-5 md:py-8">
+
+    <!-- ==================== القسم 1: الملخص الموسع والشامل ==================== -->
+    <section id="sec-lessons" class="tab-section">
+      <div class="bg-gradient-to-l from-emeraldDark via-emeraldMain to-emeraldDark text-white rounded-3xl p-5 md:p-8 shadow-md mb-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="inline-block bg-white/15 text-amber-200 text-xs font-bold px-3 py-1 rounded-full mb-2 border border-amber-200/30">المحتوى الموثق 100% من الكتاب</span>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-1">الملخص الموسع والشامل للمفاهيم الأساسية</h2>
+            <p class="text-emerald-50/90 text-xs sm:text-sm md:text-base max-w-2xl">استعرض تفاصيل الوحدات الخمس عبر بطاقات قابلة للطي والتوسيع لتسهيل الفهم والمراجعة المركزة، مع إبراز التعريفات والتواريخ والأرقام.</p>
+          </div>
+          <div class="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/15 shrink-0 self-start md:self-center">
+            <div class="text-center">
+              <div id="units-done-count" class="text-2xl font-extrabold text-amber-200">0 / 5</div>
+              <div class="text-xs text-emerald-100">وحدات تمت مراجعتها</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- أزرار اختيار الوحدة -->
+      <div id="unit-pills" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-6"></div>
+
+      <!-- حاوية محتوى الوحدة المختارة -->
+      <div id="unit-content" class="space-y-5"></div>
+    </section>
+
+    <!-- ==================== القسم 2: المحاكاة والرسوم التفاعلية ==================== -->
+    <section id="sec-simulations" class="tab-section hidden">
+      <div class="mb-5">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-emeraldDark mb-1">مختبر الفهم البصري والمحاكاة التفاعلية</h2>
+        <p class="text-slate-600 text-xs sm:text-sm md:text-base">أربع أدوات بصرية تفاعلية لتبسيط الجغرافيا الاستراتيجية، والتوزيع السكاني، وتفكيك وسائل الغزو الفكري، ومسار قضية فلسطين.</p>
+      </div>
+
+      <!-- تبويبات المحاكاة -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button type="button" onclick="switchSim(1)" id="sim-tab-1" class="sim-tab-btn px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all">1. المضايق الاستراتيجية</button>
+        <button type="button" onclick="switchSim(2)" id="sim-tab-2" class="sim-tab-btn px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all">2. الكتل السكانية والأقليات</button>
+        <button type="button" onclick="switchSim(3)" id="sim-tab-3" class="sim-tab-btn px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all">3. تفكيك الغزو الفكري</button>
+        <button type="button" onclick="switchSim(4)" id="sim-tab-4" class="sim-tab-btn px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all">4. الخط الزمني وقضية فلسطين</button>
+      </div>
+
+      <!-- محاكي 1: المضايق الاستراتيجية -->
+      <div id="sim-panel-1" class="sim-panel bg-white rounded-3xl p-4 sm:p-6 md:p-7 shadow-sm border border-slate-200/80">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+          <div>
+            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-emeraldDark">مستكشف المضايق البحرية الستة للعالم الإسلامي</h3>
+            <p class="text-xs sm:text-sm text-slate-500">انقر على أي نقطة مضيئة في الخريطة التخطيطية أو الأزرار أسفلها لمعرفة البحار التي يربطها وأهميته.</p>
+          </div>
+          <span class="text-xs font-bold bg-goldBg text-goldHeritage px-3 py-1.5 rounded-full border border-goldSoft/40 self-start">قلب العالم القديم (آسيا - أفريقيا - أوروبا)</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-8 bg-[#edf6f9] rounded-2xl p-3 border border-sky-200/80 overflow-hidden">
+            <svg viewBox="0 0 800 440" class="w-full h-auto rounded-xl" role="img" aria-label="خريطة تخطيطية لمضايق العالم الإسلامي">
+              <rect width="800" height="440" fill="#e0f2fe" rx="12" />
+              <text x="68" y="210" font-size="13" fill="#0369a1" font-weight="700">المحيط الأطلسي</text>
+              <text x="235" y="132" font-size="12" fill="#0369a1" font-weight="700">البحر المتوسط</text>
+              <text x="362" y="88" font-size="11" fill="#0369a1" font-weight="700">البحر الأسود</text>
+              <text x="348" y="220" font-size="11" fill="#0369a1" font-weight="700" transform="rotate(60 348 220)">البحر الأحمر</text>
+              <text x="455" y="275" font-size="12" fill="#0369a1" font-weight="700">بحر العرب</text>
+              <text x="510" y="370" font-size="14" fill="#0369a1" font-weight="700">المحيط الهندي</text>
+              <text x="700" y="265" font-size="12" fill="#0369a1" font-weight="700">بحر الصين</text>
+              <text x="735" y="340" font-size="12" fill="#0369a1" font-weight="700">المحيط الهادي</text>
+
+              <!-- أوروبا -->
+              <path d="M120,40 L330,30 L420,60 L355,105 L295,112 L250,95 L180,108 L138,118 Z" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.5" />
+              <text x="225" y="72" font-size="14" fill="#475569" font-weight="700">أوروبا</text>
+
+              <!-- أفريقيا -->
+              <path d="M135,148 L275,152 L322,165 L368,265 L395,288 L340,395 L235,385 L185,295 L112,245 L110,185 Z" fill="#d1fae5" stroke="#157347" stroke-width="1.5" />
+              <text x="230" y="245" font-size="15" fill="#0f5132" font-weight="700">أفريقيا</text>
+
+              <!-- آسيا -->
+              <path d="M350,115 L455,108 L595,88 L715,135 L680,235 L638,280 L615,245 L560,215 L515,240 L480,192 L455,212 L430,248 L392,265 L338,162 Z" fill="#d1fae5" stroke="#157347" stroke-width="1.5" />
+              <path d="M442,178 Q465,188 485,204 Q468,212 446,196 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="1" />
+              <path d="M625,288 L665,305 L690,322 L660,332 L615,305 Z" fill="#a7f3d0" stroke="#157347" stroke-width="1.5" />
+              <path d="M695,335 L765,342 L755,360 L692,350 Z" fill="#a7f3d0" stroke="#157347" stroke-width="1.5" />
+              <text x="530" y="155" font-size="15" fill="#0f5132" font-weight="700">آسيا</text>
+
+              <!-- خط الملاحة -->
+              <path d="M125,132 Q235,140 330,162 T388,265 Q460,295 655,310" fill="none" stroke="#d4a338" stroke-width="3" stroke-dasharray="6,6" opacity="0.85" />
+
+              <!-- نقاط المضايق الستة -->
+              <g class="cursor-pointer" onclick="selectStrait('gibraltar')">
+                <circle cx="145" cy="134" r="14" fill="#b8860b" opacity="0.25" class="strait-pulse" />
+                <circle id="dot-gibraltar" cx="145" cy="134" r="8" fill="#0f5132" stroke="#ffffff" stroke-width="2.5" />
+                <text x="145" y="160" text-anchor="middle" font-size="11" font-weight="700" fill="#0f5132">جبل طارق</text>
+              </g>
+              <g class="cursor-pointer" onclick="selectStrait('bosphorus')">
+                <circle cx="350" cy="108" r="14" fill="#b8860b" opacity="0.25" class="strait-pulse" />
+                <circle id="dot-bosphorus" cx="350" cy="108" r="8" fill="#0f5132" stroke="#ffffff" stroke-width="2.5" />
+                <text x="350" y="96" text-anchor="middle" font-size="11" font-weight="700" fill="#0f5132">البوسفور والدردنيل</text>
+              </g>
+              <g class="cursor-pointer" onclick="selectStrait('suez')">
+                <circle cx="330" cy="162" r="14" fill="#b8860b" opacity="0.25" class="strait-pulse" />
+                <circle id="dot-suez" cx="330" cy="162" r="8" fill="#0f5132" stroke="#ffffff" stroke-width="2.5" />
+                <text x="300" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="#0f5132">قناة السويس</text>
+              </g>
+              <g class="cursor-pointer" onclick="selectStrait('bab')">
+                <circle cx="385" cy="264" r="14" fill="#b8860b" opacity="0.25" class="strait-pulse" />
+                <circle id="dot-bab" cx="385" cy="264" r="8" fill="#0f5132" stroke="#ffffff" stroke-width="2.5" />
+                <text x="392" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0f5132">باب المندب</text>
+              </g>
+              <g class="cursor-pointer" onclick="selectStrait('hormuz')">
+                <circle cx="485" cy="204" r="14" fill="#b8860b" opacity="0.25" class="strait-pulse" />
+                <circle id="dot-hormuz" cx="485" cy="204" r="8" fill="#0f5132" stroke="#ffffff" stroke-width="2.5" />
+                <text x="518" y="198" text-anchor="middle" font-size="11" font-weight="700" fill="#0f5132">مضيق هرمز</text>
+              </g>
+              <g class="cursor-pointer" onclick="selectStrait('malacca')">
+                <circle cx="655" cy="305" r="14" fill="#b8860b" opacity="0.25" class="strait-pulse" />
+                <circle id="dot-malacca" cx="655" cy="305" r="8" fill="#0f5132" stroke="#ffffff" stroke-width="2.5" />
+                <text x="655" y="288" text-anchor="middle" font-size="11" font-weight="700" fill="#0f5132">ملقا وسنغافورة</text>
+              </g>
+            </svg>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3" id="strait-buttons"></div>
+          </div>
+
+          <div class="lg:col-span-4 bg-cream rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between">
+            <div id="strait-info"></div>
+            <div class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-600 leading-relaxed">
+              <strong class="text-emeraldDark">خلاصة الكتاب:</strong> يمتد العالم الإسلامي بطول <span class="font-bold">17,000 كم</span> شرقاً-غرباً و<span class="font-bold">7,000 كم</span> شمالاً-جنوباً، مما جعله في «صرة العالم» وموطناً للصراع بين القوى العالمية.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- محاكي 2: الكتل السكانية والأقليات -->
+      <div id="sim-panel-2" class="sim-panel hidden bg-white rounded-3xl p-4 sm:p-6 md:p-7 shadow-sm border border-slate-200/80">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+          <div>
+            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-emeraldDark">محلل الكتل السكانية الست وتوزيع المسلمين</h3>
+            <p class="text-xs sm:text-sm text-slate-500">بدّل بين الأوضاع الثلاثة لاستكشاف الأرقام والنسب الموثقة في الكتاب.</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" onclick="setPopMode('blocs')" id="pop-btn-blocs" class="pop-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all">الكتل السكانية الست</button>
+            <button type="button" onclick="setPopMode('continents')" id="pop-btn-continents" class="pop-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all">التوزيع القاري</button>
+            <button type="button" onclick="setPopMode('minorities')" id="pop-btn-minorities" class="pop-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all">توزيع الأقليات ومعاييرها</button>
+          </div>
+        </div>
+        <div id="pop-content"></div>
+      </div>
+
+      <!-- محاكي 3: تفكيك الغزو الفكري والاستعماري -->
+      <div id="sim-panel-3" class="sim-panel hidden bg-white rounded-3xl p-4 sm:p-6 md:p-7 shadow-sm border border-slate-200/80">
+        <div class="mb-5">
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-emeraldDark">مختبر تفكيك الغزو الفكري والاستعماري</h3>
+          <p class="text-xs sm:text-sm text-slate-500">انقر على أي وسيلة استعمارية لعرض المسار الكامل: <strong>الوسيلة ← الهدف الاستعماري ← كيفية المواجهة وفق الكتاب</strong>.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          <div class="lg:col-span-5">
+            <div class="bg-cream rounded-2xl p-4 sm:p-5 border border-slate-200/80 text-center">
+              <div class="inline-flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-emeraldDark to-emeraldMain text-white font-bold text-xs sm:text-sm shadow-lg border-4 border-amber-200 mb-4 px-2 leading-snug">
+                الهدف المشترك:<br/>طمس الهوية والوحدة
+              </div>
+              <div id="colonial-nodes" class="grid grid-cols-2 gap-2.5"></div>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div id="colonial-detail" class="bg-cream rounded-2xl p-5 sm:p-6 border border-slate-200/80"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- محاكي 4: الخط الزمني وقضية فلسطين -->
+      <div id="sim-panel-4" class="sim-panel hidden bg-white rounded-3xl p-4 sm:p-6 md:p-7 shadow-sm border border-slate-200/80">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
+          <div>
+            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-emeraldDark">الخط الزمني التفاعلي ومؤشرات قضية فلسطين (1897 - 1978م)</h3>
+            <p class="text-xs sm:text-sm text-slate-500">تتبع المحطات التاريخية الموثقة في الكتاب وقارن بالأرقام قفزة الهجرة وتوسع السيطرة على الأرض.</p>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" onclick="setTimelineMode('palestine')" id="tl-btn-palestine" class="tl-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all">مسار قضية فلسطين</button>
+            <button type="button" onclick="setTimelineMode('ummah')" id="tl-btn-ummah" class="tl-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all">مسار الأمة والخلافة</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+          <div class="bg-cream rounded-2xl p-5 border border-slate-200/80">
+            <h4 class="font-bold text-emeraldDark mb-3 text-sm sm:text-base">قفزة الهجرة اليهودية تحت الانتداب البريطاني</h4>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>عام 1339هـ / 1919م</span>
+                  <span class="text-emeraldDark">55 ألف مهاجر</span>
+                </div>
+                <div class="w-full h-4 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-emeraldMain rounded-full" style="width: 8.5%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>عام 1368هـ / 1948م</span>
+                  <span class="text-red-700">650 ألف مهاجر</span>
+                </div>
+                <div class="w-full h-4 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-red-600 rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600">في القدس ارتفع عددهم من <strong>10,000</strong> عام 1918م (25%) إلى <strong>30,000</strong> بين 1920-1925م (33%).</p>
+            </div>
+          </div>
+
+          <div class="bg-cream rounded-2xl p-5 border border-slate-200/80">
+            <h4 class="font-bold text-emeraldDark mb-3 text-sm sm:text-base">توسع السيطرة على أراضي فلسطين (%)</h4>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>الملكية اليهودية عام 1948م (القدس ≤ 4%)</span>
+                  <span class="text-goldHeritage">14%</span>
+                </div>
+                <div class="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-goldSoft rounded-full" style="width: 14%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>قرار التقسيم الأممي عام 1947م</span>
+                  <span class="text-amber-700">56%</span>
+                </div>
+                <div class="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-amber-600 rounded-full" style="width: 56%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-1">
+                  <span>السيطرة الفعلية بعد هدنة رودس عام 1949م</span>
+                  <span class="text-red-700">77%</span>
+                </div>
+                <div class="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-red-600 rounded-full" style="width: 77%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="timeline-container" class="relative border-r-2 border-emeraldMain/30 pr-6 space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- ==================== القسم 3: بطاقات المراجعة التفاعلية ==================== -->
+    <section id="sec-flashcards" class="tab-section hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-emeraldDark mb-1">بطاقات المراجعة التفاعلية (24 بطاقة)</h2>
+          <p class="text-slate-600 text-xs sm:text-sm md:text-base">انقر على البطاقة لقلبها وقراءة الإجابة الموثقة من الكتاب، ثم قيّم مدى إتقانك لها.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <div class="bg-white px-4 py-2 rounded-2xl border border-slate-200 shadow-sm text-xs sm:text-sm font-bold text-emeraldDark">
+            المتقَنة: <span id="fc-mastered-count" class="text-goldHeritage">0</span> / 24
+          </div>
+          <button type="button" onclick="shuffleFlashcards()" class="px-4 py-2 rounded-2xl bg-goldBg text-goldHeritage border border-goldSoft/50 text-xs sm:text-sm font-bold hover:bg-goldSoft hover:text-white transition-colors">
+            خلط البطاقات 🔀
+          </button>
+        </div>
+      </div>
+
+      <!-- فلترة البطاقات حسب الوحدة -->
+      <div id="fc-filters" class="flex flex-wrap gap-2 mb-6"></div>
+
+      <!-- منطقة البطاقة ثلاثية الأبعاد -->
+      <div class="max-w-2xl mx-auto">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-2 px-1">
+          <span id="fc-unit-badge" class="bg-emeraldLight text-emeraldDark px-3 py-1 rounded-full">الوحدة 1</span>
+          <span id="fc-counter">1 / 24</span>
+        </div>
+
+        <div class="perspective-1000 w-full h-72 sm:h-80 cursor-pointer select-none" onclick="flipCard()">
+          <div id="fc-inner" class="relative w-full h-full transform-style-3d">
+            <!-- الوجه الأمامي -->
+            <div class="absolute inset-0 backface-hidden bg-white rounded-3xl shadow-md border-2 border-emeraldDark/15 p-5 sm:p-8 flex flex-col items-center justify-center text-center">
+              <span class="text-xs font-bold text-goldHeritage bg-goldBg px-3 py-1 rounded-full mb-4">السؤال / المفهوم</span>
+              <p id="fc-front-text" class="text-lg sm:text-2xl font-bold text-emeraldDark leading-relaxed"></p>
+              <span class="mt-6 text-xs text-slate-400">اضغط لقلب البطاقة ورؤية الإجابة ↻</span>
+            </div>
+            <!-- الوجه الخلفي -->
+            <div class="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-emeraldDark to-emeraldMain text-white rounded-3xl shadow-md p-5 sm:p-8 flex flex-col items-center justify-center text-center">
+              <span class="text-xs font-bold text-amber-200 bg-white/15 px-3 py-1 rounded-full mb-4">الإجابة الموثقة من الكتاب</span>
+              <p id="fc-back-text" class="text-sm sm:text-lg font-semibold leading-relaxed"></p>
+              <span class="mt-5 text-xs text-emerald-100/80">اضغط للعودة للسؤال ↻</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- أزرار التقييم الذاتي والتنقل بين البطاقات -->
+        <div class="mt-5 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <span id="fc-status-label" class="text-xs font-bold text-slate-400">لم تُقيّم بعد</span>
+            <div class="flex gap-2">
+              <button type="button" onclick="markFlashcard('review')" class="px-3.5 py-2 rounded-xl bg-amber-50 text-amber-800 border border-amber-300 text-xs font-bold hover:bg-amber-100 transition-colors">
+                أحتاج مراجعتها ↻
+              </button>
+              <button type="button" onclick="markFlashcard('mastered')" class="px-3.5 py-2 rounded-xl bg-emeraldLight text-emeraldDark border border-emeraldMain/40 text-xs font-bold hover:bg-emeraldMain hover:text-white transition-colors">
+                أتقنتها ✓
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-slate-100 gap-2">
+            <button type="button" onclick="prevCard()" class="flex-1 py-2.5 rounded-xl bg-cream border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-emeraldDark transition-all">→ البطاقة السابقة</button>
+            <button type="button" onclick="flipCard()" class="px-4 py-2.5 rounded-xl bg-emeraldDark text-white text-xs sm:text-sm font-bold hover:bg-emeraldMain transition-all">اقلب البطاقة ↻</button>
+            <button type="button" onclick="nextCard()" class="flex-1 py-2.5 rounded-xl bg-cream border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-emeraldDark transition-all">البطاقة التالية ←</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== القسم 4: الأسئلة والمذاكرات ==================== -->
+    <section id="sec-practice" class="tab-section hidden">
+      <div class="mb-5">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-emeraldDark mb-1">نماذج المذاكرات المقالية والأسئلة المتدرجة</h2>
+        <p class="text-slate-600 text-xs sm:text-sm md:text-base">تدرّب على نماذج المذاكرات المقالية وفق نمط  مع التصحيح الذاتي الموزع على 20 درجة، أو اختبر نفسك بالأسئلة الموضوعية المتدرجة.</p>
+      </div>
+
+      <!-- التبويبان الرئيسيان للقسم -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6 bg-white p-2 rounded-2xl border border-slate-200/80 shadow-sm">
+        <button type="button" onclick="switchPracticeMode('essays')" id="pmode-essays" class="py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all">
+          📝 نماذج المذاكرات المقالية نمط  
+        </button>
+        <button type="button" onclick="switchPracticeMode('mcqs')" id="pmode-mcqs" class="py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all">
+          🎯 الأسئلة الموضوعية المتدرجة (15 سؤالاً)
+        </button>
+      </div>
+
+      <!-- التبويب الفرعي أ: المذاكرات المقالية -->
+      <div id="practice-essays-wrap" class="space-y-5">
+        <div id="essay-quiz-tabs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+        <div id="essay-quiz-content" class="space-y-5"></div>
+      </div>
+
+      <!-- التبويب الفرعي ب: الأسئلة الموضوعية المتدرجة -->
+      <div id="practice-mcqs-wrap" class="hidden space-y-5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <button type="button" onclick="selectPracticeLevel('all')" id="lvl-all" class="lvl-btn p-3.5 rounded-2xl border-2 text-right transition-all">
+            <div class="font-bold text-sm sm:text-base">الكل</div>
+            <div class="text-[11px] opacity-80 mt-0.5">جميع المستويات (15 سؤالاً)</div>
+          </button>
+          <button type="button" onclick="selectPracticeLevel('easy')" id="lvl-easy" class="lvl-btn p-3.5 rounded-2xl border-2 text-right transition-all">
+            <div class="font-bold text-sm sm:text-base">المستوى السهل</div>
+            <div class="text-[11px] opacity-80 mt-0.5">التذكر والفهم المباشر (5)</div>
+          </button>
+          <button type="button" onclick="selectPracticeLevel('medium')" id="lvl-medium" class="lvl-btn p-3.5 rounded-2xl border-2 text-right transition-all">
+            <div class="font-bold text-sm sm:text-base">المستوى المتوسط</div>
+            <div class="text-[11px] opacity-80 mt-0.5">الربط والمقارنة (5)</div>
+          </button>
+          <button type="button" onclick="selectPracticeLevel('hard')" id="lvl-hard" class="lvl-btn p-3.5 rounded-2xl border-2 text-right transition-all">
+            <div class="font-bold text-sm sm:text-base">المستوى المتقدم</div>
+            <div class="text-[11px] opacity-80 mt-0.5">التحليل والاستنتاج (5)</div>
+          </button>
+        </div>
+
+        <div id="practice-container" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- ==================== القسم 5: الاختبار النهائي والتشخيص الذكي ==================== -->
+    <section id="sec-exam" class="tab-section hidden">
+      <div class="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-slate-200/80 mb-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="inline-block bg-goldBg text-goldHeritage text-xs font-bold px-3 py-1 rounded-full mb-2 border border-goldSoft/40">15 سؤالاً شاملاً (3 من كل وحدة)</span>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-emeraldDark">الاختبار النهائي والتشخيص الذكي</h2>
+            <p class="text-slate-600 text-xs sm:text-sm mt-1">أجب عن جميع الأسئلة ثم اضغط «تسليم الاختبار» للحصول على نتيجتك وتحليل أدائك وخطة مراجعة مخصصة للوحدات.</p>
+          </div>
+          <div class="bg-cream px-5 py-3 rounded-2xl border border-slate-200 text-center shrink-0 self-start md:self-center">
+            <div class="text-xs text-slate-500 font-bold">تمت الإجابة على</div>
+            <div id="exam-answered-count" class="text-xl font-extrabold text-emeraldDark">0 / 15</div>
+          </div>
+        </div>
+        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden mt-4">
+          <div id="exam-progress-bar" class="h-full bg-emeraldMain transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div id="exam-questions-wrap" class="space-y-4"></div>
+
+      <div id="exam-submit-wrap" class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button type="button" onclick="submitExam()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-emeraldDark text-white font-bold text-base shadow-md hover:bg-emeraldMain transition-all">
+          تسليم الاختبار وعرض التشخيص الذكي ✓
+        </button>
+      </div>
+
+      <div id="exam-results-wrap" class="hidden space-y-6"></div>
+    </section>
+
+  </main>
+
+  <!-- تذييل الصفحة -->
+  <footer class="bg-white border-t border-slate-200/80 py-5 mt-10">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs md:text-sm text-slate-500">
+      منصة تعليمية تفاعلية مبنية حصرياً على كتاب <strong class="text-emeraldDark">«حاضر العالم الإسلامي»</strong> — تأليف الدكتور تاج السر أحمد حران (الطبعة الأولى 1422هـ / 2001م).
+    </div>
+  </footer>
+
+  <!-- البيانات والمنطق البرمجي الكامل -->
+  <script>
+    // =========================================================================
+    // 1. بيانات الوحدات الدراسية الخمس (موثقة 100% من الكتاب)
+    // =========================================================================
+    const UNITS_DATA = [
+      {
+        id: 1,
+        shortTitle: 'الوحدة 1',
+        title: 'أهمية العالم الإسلامي ومقوماته الأساسية',
+        subtitle: 'مدلول العالم الإسلامي، الأسباب الـ 7 لصعوبة التعداد، الكتل الست، عوامل الوحدة، المضايق والموارد، والأهمية البشرية',
+        blocks: [
+          {
+            heading: 'أولاً: مدلول العالم الإسلامي (المفهوم الفقهي والجغرافي)',
+            callout: 'العالم الإسلامي: الشعوب والدول ذات العقيدة الإسلامية على اختلاف بيئاتها ومناطقها وتباين ثقافاتها وتعدد سلالاتها البشرية، ويندرج تحته الأقليات المسلمة التي تعيش في دول غير إسلامية.',
+            points: [
+              '<strong>تعريف الدولة الإسلامية:</strong> هي الدولة التي يغلب على سكانها الإسلام كعقيدة، كأن يزيد عدد المسلمين فيها عن <strong>50%</strong> من مجموع السكان.',
+              '<strong>تفاوت عدد الدول الإسلامية:</strong> يتغير العدد تبعاً للظروف؛ فبعد تفكك الاتحاد السوفيتي زاد عدد الدول الإسلامية <strong>خمس دول</strong>، وظهرت <strong>جمهورية البوسنة والهرسك</strong> بعد تفكك يوغسلافيا الاتحادية.',
+              '<strong>التقسيم الفقهي للعالم:</strong> قسّم فقهاء المسلمين العالم إلى: (1) <strong>دار الإسلام:</strong> الأرض التي تسودها شريعة الإسلام وتقام فيها حدوده وإن كان جل أهلها من غير المسلمين. (2) <strong>دار الحرب:</strong> الأرض التي تسود فيها شرائع غير شريعة الله وإن كان جل أهلها من المسلمين.',
+              '<strong>سبب استخدام المصطلح جغرافياً:</strong> لما كانت شريعة الله لا تطبق اليوم إلا في ديار قليلة، اضطر المؤلف لاستعمال مصطلح «العالم الإسلامي» في معناه <strong>الجغرافي</strong>.'
+            ]
+          },
+          {
+            heading: 'ثانياً: الامتداد الجغرافي، المساحة، وعدد الدول',
+            stats: [
+              { label: 'المساحة الجغرافية', val: 'أكثر من 25% من اليابسة (~31 مليون كم²)' },
+              { label: 'الامتداد شرقاً - غرباً', val: '17,000 كم (إندونيسيا ← الرأس الأخضر)' },
+              { label: 'الامتداد شمالاً - جنوباً', val: '7,000 كم (تركستان الغربية ← موزمبيق)' },
+              { label: 'عدد الدول الإسلامية', val: '56 دولة (21 عربية + 35 غير عربية)' }
+            ],
+            points: [
+              'يمتد العالم الإسلامي من إريان/أدريان الغربية في <strong>إندونيسيا</strong> شرقاً إلى <strong>الرأس الأخضر</strong> مقابل السنغال في المحيط الأطلسي غرباً (17,000 كم)، ومن <strong>تركستان الغربية وجنوب الأورال</strong> شمالاً إلى <strong>موزمبيق</strong> جنوباً (7,000 كم).',
+              'يبلغ عدد الدول الإسلامية <strong>56 دولة</strong>: تشكل الدول العربية منها <strong>21 دولة</strong>، والدول الإسلامية الأخرى <strong>35 دولة</strong> (منها دول في طريق الانضمام لمنظمة المؤتمر الإسلامي كإريتريا وأذربيجان وألبانيا وجمهوريات آسيا الوسطى والبوسنة والهرسك).',
+              'تقدر نسبة الأقليات المسلمة في الفصل الأول بحوالي <strong>23%</strong> (أكثر من 204 ملايين)، وترتفع في تقديرات الفصل السادس إلى نحو ثلث المسلمين، وغالبيتهم في آسيا.'
+            ]
+          },
+          {
+            heading: 'ثالثاً: السكان والأسباب الـ 7 لصعوبة التعداد الدقيق',
+            points: [
+              'يزيد عدد المسلمين اليوم عن <strong>1,200 مليون نسمة</strong> (أكثر من <strong>25%</strong> من سكان العالم): <strong>70%</strong> في آسيا، <strong>26%</strong> في أفريقيا، و<strong>4%</strong> في بقية القارات. والمسلمون في الدول العربية يمثلون <strong>16.2%</strong>، وأهل السنة نحو <strong>93%</strong> والشيعة <strong>6%</strong>.',
+              '<strong>الأسباب السبعة لصعوبة الإحصاء السكاني الدقيق:</strong>',
+              '1. غياب الإحصاءات السكانية الدقيقة التي تشمل الانتماء الديني.',
+              '2. عدم إفصاح الدول عن نتائج التعدادات خاصة الانتماءات الدينية لمساسها بالتوازنات السياسية.',
+              '3. عدم توافر الوعي الإحصائي وتهرب الناس من القيد خوفاً من التجنيد أو الضرائب.',
+              '4. عدم توافر الإمكانيات اللازمة للقيام بالتعداد السكاني واعتماد بعض الدول على التقديرات.',
+              '5. اعتماد أسلوب العينة واستبعاد المسلمين عمداً، كما حصل في <strong>إثيوبيا عام 1970م</strong>.',
+              '6. وجود المشكلات العرقية والدينية مما يدفع المجموعات لتضخيم حجمها، كما حدث في <strong>نيجيريا عام 1963م</strong> بعد الاستقلال، وفي <strong>لبنان عام 1932م</strong> لتحديد توزيع الوظائف الدستورية.',
+              '7. عدم توفر إحصاءات دقيقة للأقليات واستمرار التحول للإسلام، وتباين المصادر (ففي <strong>الغابون</strong> قدرت المصادر الأجنبية المسلمين بـ <strong>10%</strong> بينما قدرتهم الإسلامية بـ <strong>40%</strong>).'
+            ]
+          },
+          {
+            heading: 'رابعاً: الكتل السكانية الست وعوامل الوحدة الإسلامية',
+            points: [
+              '<strong>الكتل السكانية الست:</strong> (1) <strong>الكتلة العربية:</strong> 147 مليوناً (16.2%). (2) <strong>الإيرانية-الأفغانية-الباكستانية-الكشميرية-البنغالية:</strong> 200 مليون (22%). (3) <strong>الإندونيسية-الماليزية:</strong> 123 مليوناً (13.5%). (4) <strong>الأفريقية</strong> (النطاق الصحراوي وشرق أفريقيا): 178 مليوناً (19.6%). (5) <strong>التركية-القوقازية:</strong> 110 ملايين (12%). (6) <strong>التركستانية:</strong> 57 مليوناً (6.5%: 18 مليوناً في الصين + 39 مليوناً في الاتحاد السوفيتي السابق).',
+              '<strong>عوامل الوحدة الإسلامية:</strong> (1) <strong>الدين الإسلامي</strong> (ثوابت عقدية صهرت الشعوب في أمة واحدة)، (2) <strong>اللغة العربية لغة القرآن</strong> (لغة العلم والتأليف)، (3) <strong>التاريخ الإسلامي المشترك</strong> (أساس الهوية ودولة الخلافة)، (4) <strong>المشاعر والأهداف الواحدة</strong> (الآمال والآلام المشتركة كالجسد الواحد).'
+            ]
+          },
+          {
+            heading: 'خامساً: الأهمية الاستراتيجية، الموارد الطبيعية، والأهمية البشرية',
+            callout: 'تعريف الأمة الإسلامية (أكثر شمولاً من العالم الإسلامي): «قطاع كبير من البشرية آمن بالله رباً، وبمحمد ﷺ رسولاً، واتبع ما أنزل عليه وما جاء به».',
+            points: [
+              '<strong>الموقع الاستراتيجي والمضايق الستة:</strong> يقع في قلب العالم القديم و«صرة العالم»، ويشرف على أهم البحار والمحيطات عبر 6 منافذ بحرية كبرى: <strong>جبل طارق، الدردنيل والبوسفور، قناة السويس، باب المندب وخليج عدن، هرمز وخليج عُمان، وملقا وسنغافورة</strong>.',
+              '<strong>الموارد الطبيعية:</strong> تجري فيه أنهار كبرى (النيل، الكونغو، النيجر، دجلة والفرات، السند، الغنج، سيحون وجيحون، العاصي، الليطاني، الأردن)، ويتنوع مناخه (استوائي، موسمي، قاري صحراوي، معتدل) مما يحقق <strong>التكامل الزراعي والاكتفاء الذاتي</strong>، مع توافر الوقود والمعادن ورؤوس الأموال والأيدي العاملة. ومع ذلك ظل <strong>«عملاقاً مقيداً»</strong>.',
+              '<strong>مظاهر وحدة الأمة الإسلامية الستة:</strong> (1) وحدة العقيدة، (2) وحدة العبادة (القبلة، الصوم، الحج)، (3) وحدة التشريع (القرآن والسنة)، (4) وحدة السلوك والعادات والتقاليد، (5) وحدة اللغة (العربية)، (6) وحدة التاريخ والآمال والهدف.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 2,
+        shortTitle: 'الوحدة 2',
+        title: 'ضعف العالم الإسلامي ونتائجه',
+        subtitle: 'آراء المفكرين، العوامل الـ 7 للضعف، تعطيل الشريعة، إلغاء الخلافة وشروط لوزان الأربع وآثار غيابها',
+        blocks: [
+          {
+            heading: 'أولاً: آراء المفكرين في أسباب ضعف وتأخر المسلمين',
+            points: [
+              '<strong>أصحاب الحركات الإصلاحية السلفية:</strong> ردّوه إلى ابتعاد المسلمين عن تعاليم دينهم الصحيحة، وشيوع البدع والضلالات، وتشتتهم إلى فرق متصارعة. والحل: الرجوع إلى صفاء الإسلام الأول.',
+              '<strong>جمال الدين الأفغاني والشيخ محمد عبده:</strong> أرجعاه إلى العزوف عن الأخذ بالمفيد من الحضارة الغربية (خاصة الجانب التقني) مع النهي عن التقليد الأعمى ثقافياً وفكرياً.',
+              '<strong>الأمير شكيب أرسلان:</strong> أرجعه إلى الجهل والعلم الناقص، وعدم الفهم الصحيح لمبادئ الإسلام والتخلق بأخلاقه، وضياع الإسلام بين <strong>الجامدين</strong> من علمائه و<strong>الجاحدين</strong> عليه.',
+              '<strong>رأي العلمانيين ونصارى العرب (رأي باطل):</strong> زعموا أن السبب هو التعصب الديني وعدم مواكبة الإسلام لروح العصر؛ ويؤكد الكتاب أن <strong>الإسلام والعلمانية لا يجتمعان</strong>.'
+            ]
+          },
+          {
+            heading: 'ثانياً: العوامل السبعة لضعف العالم الإسلامي',
+            points: [
+              '<strong>1. الغزو المغولي (التتري):</strong> استغل انقسام العالم الإسلامي إلى 3 خلفاء في القرن 4هـ/10م (العباسي ببغداد، الفاطمي بمصر، الأموي بالأندلس). دمر هولاكو بغداد وأسقط دمشق عام <strong>657هـ</strong> بمشاركة فرق نصرانية، حتى هزمهم المماليك في <strong>عين جالوت (658هـ / 1260م)</strong>.',
+              '<strong>2. موقف اليهود من الإسلام:</strong> عداء مستمر منذ المدينة المنورة حتى دورهم في إسقاط الخلافة العثمانية واستلاب فلسطين.',
+              '<strong>3. الحركة الصهيونية والماسونية:</strong> تسعى لإقامة دولة من الفرات إلى النيل، والتحالف مع الاستعمار لفصل آسيا عن أفريقيا، وتدمير القيم عبر الغزو الثقافي و<strong>الفكر الماسوني</strong> الخفي.',
+              '<strong>4. الحروب الصليبية (1099م - 1254م):</strong> سبقها تمزق الأندلس حتى سقوط غرناطة (<strong>897هـ / 1492م</strong>). وفي المشرق ذبحوا نحو <strong>70 ألف مسلم</strong> في ساحة الأقصى وأكثر من <strong>100 ألف</strong> في المعرة، واستنزفوا الشام ومصر.',
+              '<strong>5. الاستعمار الأوروبي والكشوف الجغرافية (القرن 15م):</strong> بدأت بروح صليبية لتطويق العالم الإسلامي وتحويل طرق التجارة للمحيطات، ثم تقاسمت أوروبا بلاد المسلمين (بريطانيا، فرنسا، إيطاليا، إسبانيا، هولندا، روسيا).',
+              '<strong>6. حركتا الاستشراق والتنصير:</strong> للهدم الفكري والثقافي وطمس الهوية.',
+              '<strong>7. دعوات الإلحاد والفرق الهدامة:</strong> كالشيوعية، والقاديانية، والبهائية.'
+            ]
+          },
+          {
+            heading: 'ثالثاً: نتائج الضعف (1) الابتعاد عن تطبيق الشريعة الإسلامية',
+            points: [
+              'ساد الجمود والتقليد وفترت روح الاجتهاد، وعمل الاستعمار على إلغاء الشريعة تدريجياً واستبدالها بالقوانين الوضعية وحصرها في <strong>الأحوال الشخصية</strong>:',
+              '• في <strong>الهند</strong> بعد السيطرة البريطانية، وفي <strong>السودان</strong> عام <strong>1317هـ / 1899م</strong> عقب القضاء على الثورة المهدية، وفي <strong>الدولة العثمانية</strong> بدعوى إصلاح القوانين.',
+              '• في <strong>مصر</strong> منذ غزو نابليون (<strong>1798م</strong>) ثم عهد محمد علي، واكتمل بالاحتلال البريطاني (<strong>1882م</strong>).',
+              '• في <strong>تونس</strong> طُبّق القانون الوضعي الفرنسي عام <strong>1333هـ / 1914م</strong>، وفي <strong>المغرب والجزائر</strong> عطّلت فرنسا الشريعة وأحلت <strong>الأعراف البربرية والقبلية</strong> محلها ليقينها أن التخلي عن الشريعة تخلٍ نهائي عن الإسلام.'
+            ]
+          },
+          {
+            heading: 'رابعاً: نتائج الضعف (2) إلغاء الخلافة العثمانية وشروط لوزان الأربع',
+            callout: 'شروط اتفاقية لوزان الأربع (1340هـ / 1923م): (1) قطع كل صلة لتركيا بالإسلام. (2) إلغاء الخلافة الإسلامية. (3) إخراج الخليفة العثماني ومصادرة أملاكه وإخماد كل حركة موالية للخلافة. (4) اتخاذ دستور مدني بدلاً من الدستور القائم على الشريعة الإسلامية.',
+            points: [
+              '<strong>دور الدولة العثمانية:</strong> حمت العالم الإسلامي <strong>4 قرون</strong>، فتحت القسطنطينية (<strong>857هـ / 1453م</strong>)، حمت الشمال الأفريقي وجعلت البحر الأحمر بحراً إسلامياً، ورفض <strong>السلطان عبد الحميد الثاني</strong> هجرة اليهود لفلسطين رغم الإغراءات المالية.',
+              '<strong>إسقاط الخلافة:</strong> ظهرت «المسألة الشرقية» و«رجل أوروبا المريض»، واتبع <strong>الاتحاديون</strong> سياسة طورانية، فأُعلنت الجمهورية (1923م) وألغى <strong>مصطفى كمال أتاتورك</strong> الخلافة نهائياً في <strong>2 مارس 1924م / 1342هـ</strong>.',
+              '<strong>إجراءات أتاتورك العلمانية:</strong> ألغى التعليم الديني والمحاكم الشرعية والحجاب، واستبدل التقويم الهجري بالميلادي، وحول العطلة للأحد، وأمر بلبس القبعة، واستبدل الحرف العربي باللاتيني، وقمع بوحشية <strong>حركة الشيخ سعيد (1925م)</strong> فاستشهد أكثر من نصف مليون مسلم.',
+              '<strong>الآثار الأربعة لغياب الخلافة:</strong> (1) غياب دولة الإسلام الكبرى، (2) غياب الدولة الجامعة والحامية للمسلمين، (3) غياب الدولة التي ترهب الأعداء، (4) فتح الطريق أمام الصهيونية لفلسطين وحركة التغريب وتقسيم أملاك الخلافة.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 3,
+        shortTitle: 'الوحدة 3',
+        title: 'وسائل الاستعمار في إضعاف العالم الإسلامي',
+        subtitle: 'المخطط السياسي والاقتصادي، الغزو الفكري وأساليبه، الاستشراق، التنصير، والميراث الاستعماري',
+        blocks: [
+          {
+            heading: 'أولاً: المخطط السياسي والاقتصادي (الاستعمار الحديث)',
+            points: [
+              '<strong>الهيمنة عن بُعد:</strong> إبقاء الدول الإسلامية فقيرة ومعتمدة على المستعمر عبر التكتلات الاقتصادية واحتكار المال والمعونات المشروطة.',
+              '<strong>الاستقلال المزيف:</strong> تسليم الحكم بعد خروج المستعمر لنخب تعلمت في مدارس إرسالياته وتشربت الفكر الغربي العلماني.',
+              '<strong>إشعال مشاكل الحدود والعولمة:</strong> زرع الخلافات الحدودية، وتشجيع الأحزاب القومية والطائفية والإلحادية، ثم هيمنة الولايات المتحدة عبر <strong>العولمة</strong> والمؤسسات المالية (البنك الدولي ومؤسسة النقد العالمية).'
+            ]
+          },
+          {
+            heading: 'ثانياً: الغزو الفكري والثقافي وأساليبه',
+            callout: 'مفهوم الغزو الفكري: أسلوب يعتمد الوسائل غير العسكرية الناعمة والماكرة لغزو العقول والقلوب وإزالة مظاهر الحياة الإسلامية وصرف المسلمين عن دينهم، وسلاحه الفكرة والحيلة والشبهات، وهو أخطر من الغزو العسكري.',
+            points: [
+              '<strong>1. العلمانية (Secularism):</strong> لا صلة لها بالعلم، بل تعني <strong>«اللادينية»</strong> وإبعاد الدين عن الحياة كلها (وليس فصل الدين عن الدولة فقط)، وتسميها دائرة المعارف البريطانية «الإلحاد العملي». وتشمل التشبث بالحضارة الغربية (طه حسين في «مستقبل الثقافة في مصر»، سلامة موسى، قاسم أمين).',
+              '<strong>2. بث النزعات الإقليمية والقومية:</strong> <strong>الفرعونية</strong> في مصر (منذ نابليون 1798م)، <strong>الفارسية</strong> في إيران، <strong>الفينيقية</strong> في لبنان/الشام، <strong>الآشورية والبابلية</strong> في العراق، <strong>الكنعانية</strong> في فلسطين، و<strong>البربرية</strong> في المغرب، ثم إشعال العروبة والطورانية.',
+              '<strong>3. محاربة اللغة العربية:</strong> تحويل الحروف للاتينية (مؤتمر <strong>باكو 1926م</strong> لتركيا، والإندونيسية والهوسا والسواحيلية)، تشجيع اللهجات المحلية، فرض لغة المستعمر، والدعوة للعامية.',
+              '<strong>4. توجيه التعليم والصحافة:</strong> تهميش مواد الدين والتاريخ الإسلامي، الاختلاط، ونشر كتب خطيرة مثل <strong>«الإسلام وأصول الحكم»</strong> لعلي عبد الرازق و<strong>«في الشعر الجاهلي»</strong> لطه حسين (1926م).',
+              '<strong>5. بث الدعوات الدينية الهدامة:</strong> <strong>السيد أحمد خان</strong> (المذهب الطبيعي ومدرسة «عليكرة» بالهند)، <strong>القاديانية والأحمدية</strong>، و<strong>البابية والبهائية</strong> (إنكار ختم النبوة وتناسخ الأرواح وإنكار اليوم الآخر).'
+            ]
+          },
+          {
+            heading: 'ثالثاً: حركة الاستشراق (التعريف، الدوافع، الطائفتان، والأهداف)',
+            points: [
+              '<strong>التعريف:</strong> اشتغال طائفة من الباحثين الغربيين بدراسة علوم الشرق وحضارته وأديانه ولغاته وثقافته؛ تلبس بلباس البحث العلمي وارتبط غالبه بالاستعمار.',
+              '<strong>الدوافع:</strong> (1) <strong>دينية:</strong> مساعدة التنصير وهدم العقيدة بالتشكيك. (2) <strong>استعمارية:</strong> معرفة مواطن ضعف المسلمين لتسهيل السيطرة عليهم. (3) <strong>علمية شخصية</strong> لدى قلة منصفة.',
+              '<strong>الطائفتان:</strong> قلة منصفة (ليوبولد فايس/<strong>محمد أسد</strong>، <strong>إبراهيم خليل أحمد</strong>، والألماني <strong>جوهان جاكوب رايسكه</strong>)، وأكثرية متحاملة (ألفوا نحو 60 ألف كتاب) أثارت شبهات كبشرية القرآن واقتباسه وأخذ الفقه من القانون الروماني وقضية المرأة.',
+              '<strong>الأهداف الرئيسة:</strong> (1) ترسيخ <strong>التبعية للغرب</strong> والاستسلام لقيمه المادية. (2) <strong>بث التخاذل الديني</strong> والتشكيك في الإسلام وتراثه وتغريب العقلية الإسلامية.'
+            ]
+          },
+          {
+            heading: 'رابعاً: حركة التنصير ونموذج إندونيسيا',
+            callout: 'القس زويمر: «مهمتكم أن تخرجوا المسلم من الإسلام ليصبح مخلوقاً لا صلة له بالله وبالتالي لا صلة له بالأخلاق... وبذلك تكونون طليعة الفتح الاستعماري». وغلادستون: «ما دام هذا القرآن موجوداً فلن تستطيع أوروبا السيطرة على الشرق».',
+            points: [
+              '<strong>التعريف والوسائل:</strong> التحول للنصرانية؛ وسائله: التعليم، المستشفيات والمساعدات، إفساد المرأة ومحاربة الحجاب، التجسس ورصد الحركات الإسلامية، والمشروعات الاقتصادية. ويبقى <strong>الفقر</strong> منفذه الأساسي.',
+              '<strong>نموذج إندونيسيا:</strong> وضع المنصرون خطة في <strong>مؤتمر مالانج (1967م)</strong> لتنصير جزيرة جاوا خلال 60 عاماً. وفي إحصاءات <strong>1990م</strong>: <strong>15,819</strong> كنيسة بروتستانتية و<strong>10,520</strong> كاثوليكية، مع استغلال دعم وكالات الأمم المتحدة.'
+            ]
+          },
+          {
+            heading: 'خامساً: الميراث الاستعماري في العالم الإسلامي',
+            points: [
+              '<strong>1. مشكلة جنوب السودان:</strong> صنعها الاستعمار البريطاني بسياسة العزل وإطلاق يد التنصير ومنع اختلاط الشمال بالجنوب؛ وليست حرباً دينية بدليل لجوء أغلب الجنوبيين لشمال السودان المسلم بأمن وسلام.',
+              '<strong>2. المشكلة الكردية:</strong> صنعها الاستعمار بترسيم الحدود الفاصلة بين العرب والترك والإيرانيين، وتوزيع الأكراد بين شمال العراق وجنوب شرق تركيا وغرب إيران، مما مزق هويتهم وأشعل الصراع القومي. <strong>وحلها وفق الكتاب:</strong> التمسك بالإسلام والرابطة الإسلامية الجامعة.',
+              '<strong>3. المشكلات الحدودية:</strong> تقسيم سوريا ولبنان، اقتطاع <strong>لواء الإسكندرونة</strong>، الصحراء المغربية، شط العرب، كشمير، شمال بورنيو، حلايب؛ لإلهاء الدول واستنزافها بشراء السلاح.',
+              '<strong>4. تهيئة الأقليات النصرانية للحكم:</strong> مثل تشاد سابقاً (أقلية 10% تحكم 90%) وإريتريا وإثيوبيا وتنزانيا. <strong>5. إسقاط الخلافة.</strong>'
+            ]
+          }
+        ]
+      },
+      {
+        id: 4,
+        shortTitle: 'الوحدة 4',
+        title: 'اتجاه مقاومة الاستعمار الغربي (القرن 13هـ/19م)',
+        subtitle: 'الحركة المهدية في السودان، جمال الدين الأفغاني، الشيخ محمد عبده، ومحمد رشيد رضا',
+        blocks: [
+          {
+            heading: 'أولاً: الحركة المهدية في السودان (1885م - 1899م)',
+            points: [
+              'ألغت المذاهب الأربعة لتوحيد أهل السودان على مذهب واحد أساسه الزهد ومجاهدة النفس، وجعلت الجهاد وسيلتها للإصلاح.',
+              'نجح المهدي في تحرير السودان من الحكم التركي-المصري واستولى على <strong>الخرطوم عام 1885م</strong>.',
+              'سقطت الدولة المهدية أمام حملة الجنرال البريطاني <strong>كتشنر عام 1899م</strong> ففُرض الحكم الثنائي (الإنجليزي-المصري) الذي كان فعلياً حكماً إنجليزياً محضاً.'
+            ]
+          },
+          {
+            heading: 'ثانياً: جمال الدين الأفغاني (1254هـ - 1897م)',
+            points: [
+              'الأرجح أنه ولد في <strong>أفغانستان</strong>، وتنقل بين الهند وإيران ومصر وباريس وإسطنبول (في ضيافة السلطان عبد الحميد حتى وفاته في 9 مارس 1897م)، وكان المستعمرون يطردونه أينما حل.',
+              'قاوم الغزو الفكري وألّف كتاب <strong>«الرد على الدهريين»</strong> لتفنيد أفكار السيد أحمد خان الهدامة.',
+              'أسس في باريس مع تلميذه محمد عبده جمعية وجريدة <strong>«العروة الوثقى»</strong>، ودعا إلى <strong>وحدة المسلمين</strong> ونبذ الخرافات والأخذ بأسباب التقدم.'
+            ]
+          },
+          {
+            heading: 'ثالثاً: الشيخ محمد عبده (1849م - 1905م) ومحمد رشيد رضا',
+            callout: 'منهج الشيخ محمد عبده الإصلاحي السلفي قام على أمرين: (1) تحرير الفكر من قيد التقليد. (2) فهم الدين على طريقة سلف الأمة قبل ظهور الخلاف بالرجوع إلى ينابيع الدين الأولى.',
+            points: [
+              'عالم أزهري شارك في <strong>الثورة العرابية (1882م)</strong> ونُفي إلى باريس حيث عاون الأفغاني في «العروة الوثقى»، ثم عاد لمصر وأصبح <strong>مفتي الديار المصرية عام 1899م</strong>.',
+              'ألّف كتاب <strong>«رسالة التوحيد»</strong> للرد على الملحدين والمتشككين، ودعا إلى <strong>إصلاح الأزهر الشريف</strong> والتوفيق بين العلم والدين.',
+              'تابع نهجه السلفي تلميذه وصديقه <strong>محمد رشيد رضا</strong> في مجلة <strong>«المنار»</strong> التي كانت تفتتح مقالاتها بتفسير الشيخ محمد عبده.'
+            ]
+          }
+        ]
+      },
+      {
+        id: 5,
+        shortTitle: 'الوحدة 5',
+        title: 'قضايا إسلامية معاصرة (الأقليات المسلمة وفلسطين)',
+        subtitle: 'واقع الأقليات في أوروبا وأفريقيا وحلولها، ومسار قضية فلسطين الكامل (1897م - 1978م)',
+        blocks: [
+          {
+            heading: 'أولاً: الأقليات المسلمة (المعايير، الأرقام، وأقليات أوروبا وأفريقيا)',
+            stats: [
+              { label: 'حجم الأقليات عالمياً', val: 'نحو ثلث المسلمين (336.42 إلى 374 مليوناً)' },
+              { label: 'في قارة آسيا', val: '75.4% من الأقليات (الصين ~100م، الهند 90-150م)' },
+              { label: 'في قارة أوروبا', val: '66 مليوناً (بنسبة 9% من سكان أوروبا)' },
+              { label: 'في أفريقيا والأمريكتين', val: 'أفريقيا 44م | أمريكا وأستراليا 13م' }
+            ],
+            points: [
+              '<strong>المعياران:</strong> المعيار العددي (أقل من 50%) ومعيار النفوذ السياسي (قد يكونون أغلبية عددية بلا نفوذ كـ<strong>إثيوبيا وتنزانيا</strong>).',
+              '<strong>أقليات أوروبا:</strong> تواجه تهديد الدولة القومية العلمانية بالتذويب (لكن الإسلام يصعب تذويبه كـ«ذوبان الرمل في الماء»)، والغربة والتمييز، التشتت العرقي والمذهبي، <strong>«عقدة الأقلية»</strong>، وأزمة الجيل الجديد بين عالمين. <strong>الحلول:</strong> الانسجام والمشاركة الفاعلة مع الحفاظ على الهوية، توحيد القيادات، التعليم الديني، وربطهم بالعالم الإسلامي.',
+              '<strong>أقليات أفريقيا:</strong> توجد 15 دولة جنوب الصحراء >70% مسلمون و10 دول >50%، وفشل مخطط تنصير القارة عام 2000م. <strong>المشكلات:</strong> الفقر والجهل للعزوف عن مدارس التنصير (الطلاب المسلمون في تنزانيا لا يتجاوزون <strong>10%</strong>)، الذوبان الثقافي وتحويل الحروف للاتينية، الفرقة وأزمة القيادة، والعزلة. <strong>الحلول:</strong> التخطيط العلمي وتدريب الدعاة، إنشاء مدارس حديثة تجمع بين الدين والعلم، وفتح قنوات التواصل.'
+            ]
+          },
+          {
+            heading: 'ثانياً: قضية فلسطين — الصهيونية، وعد بلفور، وأسباب النجاح الأربعة',
+            points: [
+              '<strong>المؤتمر الصهيوني الأول في «بال» (مايو 1897م):</strong> بسويسرا بزعامة <strong>تيودور هرتزل</strong> (مؤلف «الدولة اليهودية») وبرنامجه ذو النقاط الخمس (استيطان فلسطين، تأمين حق شرعي دولي، إنشاء منظمة دائمة، ضمانات حكومية، تغذية الوعي القومي اليهودي).',
+              '<strong>وعد بلفور (2 نوفمبر 1917م):</strong> للورد روتشيلد. <strong>دوافع بريطانيا:</strong> كسب الحرب العالمية الأولى، تأمين طريق الهند وقناة السويس، منع وحدة المسلمين، وكسب نفوذ ومال اليهود بأمريكا.',
+              '<strong>الوجود التاريخي:</strong> لم يتجاوز الوجود اليهودي 140 عاماً على فترتين متباعدتين مقابل 5,000 عام للعرب والفتح الإسلامي سنة 15هـ.',
+              '<strong>أسباب نجاح الصهيونية الأربعة:</strong> (1) التخطيط الصهيوني والصبر عليه، (2) غياب التخطيط الإسلامي، (3) <strong>إبعاد الإسلام عن المعركة</strong>، (4) <strong>إقصاء الشعب الفلسطيني عن المعركة</strong>.'
+            ]
+          },
+          {
+            heading: 'ثالثاً: الانتداب، المقاومة الفلسطينية، قيام إسرائيل، والحروب (1918م - 1978م)',
+            points: [
+              '<strong>سياسات الانتداب البريطاني (1918-1939م):</strong> تشجيع الهجرة (من <strong>55 ألفاً</strong> عام 1919م إلى <strong>650 ألفاً</strong> عام 1948م)، تمليك الأراضي (إلى <strong>14%</strong> عام 1948م)، الاعتراف بالوكالة اليهودية، وتعيين الصهيوني <strong>هربرت صموئيل</strong> مندوباً سامياً (1920م).',
+              '<strong>المقاومة الفلسطينية:</strong> انتفاضة نيسان <strong>1920م</strong>، المؤتمر الفلسطيني الثالث بحيفا (ديسمبر 1920م برئاسة موسى كاظم الحسيني)، أحداث حائط البراق <strong>1929م</strong>، ثورة الشيخ <strong>عز الدين القسام 1935م</strong>، <strong>الثورة الفلسطينية الكبرى (1936-1939م)</strong> والإضراب 6 أشهر، اللجنة الملكية ومشروع التقسيم، ثم <strong>الكتاب الأبيض 1939م</strong> وعصابات شتيرن والأرغون والهجاناه.',
+              '<strong>التحول لأمريكا وقيام إسرائيل والحروب:</strong> رفض <strong>الملك عبد العزيز آل سعود</strong> القاطع في لقاء البحيرات المرة (1945م) مع روزفلت، قرار التقسيم بالأمم المتحدة (<strong>1947م</strong>)، مجازر دير ياسين وقبية وناصر الدين، إعلان إسرائيل في <strong>15 مايو 1948م</strong> (أول دولتين إسلاميتين اعترفتا بها: تركيا وإيران الشاه)، <strong>هدنة رودس 1949م</strong> (استيلاء إسرائيل على <strong>77%</strong> بدل 56%)، التصريح الثلاثي (1950م)، العدوان الثلاثي (<strong>1956م</strong>)، حرب <strong>1967م</strong>، حرب رمضان (<strong>1973م</strong>)، واتفاقيات <strong>كامب ديفيد (سبتمبر 1978م)</strong>.'
+            ]
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 2. بيانات المحاكاة التفاعلية
+    // =========================================================================
+    const STRAITS_DATA = {
+      gibraltar: { name: 'مضيق جبل طارق', connects: 'المحيط الأطلسي ↔ البحر الأبيض المتوسط', location: 'البوابة الغربية للعالم الإسلامي', importance: 'يتحكم في اتصال المحيط الأطلسي بالبحر الأبيض المتوسط، ويمثل البوابة الملاحية الغربية نحو قلب العالم القديم.' },
+      bosphorus: { name: 'مضيقا الدردنيل والبوسفور', connects: 'البحر الأسود ↔ البحر الأبيض المتوسط', location: 'تركيا (آسيا الصغرى والبلقان)', importance: 'يتحكمان في اتصال البحر الأسود بالبحر الأبيض المتوسط ويشكلان ممراً حيوياً لشمال العالم الإسلامي.' },
+      suez: { name: 'قناة السويس الاستراتيجية', connects: 'البحر الأحمر ↔ البحر الأبيض المتوسط', location: 'مصر (التقاء آسيا وأفريقيا)', importance: 'سهّلت اتصال الشرق بالغرب بحراً وقلصت المسافات إلى حد بعيد، مما ضاعف الأهمية الاستراتيجية للعالم الإسلامي.' },
+      bab: { name: 'مضيق باب المندب وخليج عدن', connects: 'البحر الأحمر ↔ بحر العرب (المحيط الهندي)', location: 'اليمن وجيبوتي والصومال', importance: 'يتحكم في المدخل الجنوبي للبحر الأحمر واتصاله ببحر العرب، وقد حرص العثمانيون على جعله بحراً إسلامياً لقربه من الحجاز.' },
+      hormuz: { name: 'مضيق هرمز وخليج عُمان', connects: 'المحيط الهندي ↔ الخليج العربي', location: 'عُمان وإيران ودول الخليج العربي', importance: 'يتحكم في اتصال المحيط الهندي بالخليج العربي ويمر عبره شريان الطاقة الرئيسي في العالم.' },
+      malacca: { name: 'مضيق ملقا وسنغافورة', connects: 'المحيط الهندي ↔ بحر الصين الجنوبي والمحيط الهادي', location: 'ماليزيا وإندونيسيا (البوابة الشرقية)', importance: 'يتحكم في اتصال المحيط الهندي ببحر الصين الجنوبي والمحيط الهادي ويمثل الشريان الملاحي الشرقي الأهم.' }
+    };
+
+    const COLONIAL_TOOLS = [
+      {
+        id: 'secularism',
+        title: 'العلمانية (Secularism)',
+        tool: 'إدخال مناهج تعليمية لادينية ومبعوثين متغربين وصحافة تروّج للتبعية للغرب (مثل كتابات طه حسين وعلي عبد الرازق).',
+        goal: 'إبعاد الدين عن الحياة كلها (الاجتماعية والأخلاقية والتعليمية والسياسية) وليس فصل الدين عن الدولة فقط، لسلخ الأمة عن عقيدتها.',
+        counter: 'التمسك بالإسلام كمنهج حياة شامل، وتنقية المناهج التعليمية، والتصدي لفكر التغريب مع الأخذ بالمفيد التقني دون التقليد الأعمى (منهج الأفغاني ومحمد عبده).'
+      },
+      {
+        id: 'orientalism',
+        title: 'حركة الاستشراق',
+        tool: 'تلبس بلباس البحث العلمي وتأليف عشرات الآلاف من الكتب التي تضخم السلبيات وتثير الشبهات حول القرآن والفقه والتاريخ.',
+        goal: 'ترسيخ التبعية للغرب والاستسلام لقيمه المادية، وبث روح التخاذل والشك الديني لتهيئة السيطرة الاستعمارية.',
+        counter: 'الرد العلمي المنهجي على الشبهات، والرجوع إلى المصادر الإسلامية الأصيلة، وإبراز إنجازات الحضارة الإسلامية بوعي وثقة.'
+      },
+      {
+        id: 'missionary',
+        title: 'حركة التنصير',
+        tool: 'استغلال الفقر عبر المدارس والمستشفيات والمساعدات الإنسانية (كما في خطة مؤتمر مالانج 1967م بإندونيسيا وأفريقيا).',
+        goal: 'إخراج المسلم من الإسلام ليصبح بلا صلة بالله ولا بالأخلاق، ليكون طليعة الفتح الاستعماري (مقولة القس زويمر).',
+        counter: 'سد ثغرة الفقر بالتكافل والتنمية، وتدريب الدعاة علمياً، وإنشاء مدارس حديثة تجمع بين العلوم الدينية والعصرية، وتنسيق جهود المنظمات الإسلامية.'
+      },
+      {
+        id: 'arabic',
+        title: 'محاربة اللغة العربية',
+        tool: 'تحويل الحروف العربية إلى لاتينية (مؤتمر باكو 1926م لتركيا، وإندونيسيا والهوسا والسواحيلية)، وتشجيع العامية واللهجات وفرض لغة المستعمر.',
+        goal: 'قطع صلة المسلمين بالقرآن الكريم وتراثهم الإسلامي، ومنع وحدتهم اللغوية والثقافية.',
+        counter: 'الاعتزاز باللغة العربية الفصحى لغة القرآن والعلم، وتقوية تعليمها في المناهج الدراسية ولأبناء الأقليات المسلمة.'
+      },
+      {
+        id: 'kurds',
+        title: 'المشكلة الكردية',
+        tool: 'ترسيم حدود سياسية مصطنعة فرقت الأكراد بين شمال العراق وجنوب شرق تركيا وغرب إيران، وتغذية النزاعات القومية والعنصرية.',
+        goal: 'تمزيق هوية الأكراد وتعميق شعورهم بالضياع والانحباس وإشعال الحروب والصراعات المستمرة بين الأمم الإسلامية المتجاورة.',
+        counter: 'التمسك بالإسلام والرابطة الإسلامية الجامعة بدلاً من النزعات القومية والعنصرية الضيقة؛ فبالإسلام تجتمع القلوب وتنتهي الحروب.'
+      },
+      {
+        id: 'south_sudan',
+        title: 'مشكلة جنوب السودان',
+        tool: 'سياسة العزل الإداري والثقافي البريطاني، وإطلاق يد الإرساليات التنصيرية، وسن قوانين لمنع اختلاط أهل الشمال بالجنوب.',
+        goal: 'تعميق الفوارق العرقية والدينية لفصل الجنوب عن الشمال واستنزاف موارد البلاد في صراع دائم.',
+        counter: 'إزالة آثار العزل الاستعماري، والتعايش السلمي والأمني (بدليل لجوء أغلبية الجنوبيين لشمال السودان المسلم بأمن وسلام)، ونشر الإسلام سلماً لا جبراً.'
+      }
+    ];
+
+    const TIMELINE_DATA = {
+      palestine: [
+        { year: 'مايو 1897م', title: 'المؤتمر الصهيوني الأول في «بال»', desc: 'عقد بسويسرا برئاسة تيودور هرتزل وحضور أكثر من 200 يهودي، وأقر برنامج استيطان فلسطين وكسب الضمانات الدولية.' },
+        { year: '2 نوفمبر 1917م', title: 'صدور وعد بلفور المشؤوم', desc: 'رسالة وزير الخارجية البريطاني للورد روتشيلد لإقامة وطن قومي لليهود في فلسطين، فأعطت دولة لا تملك أرضاً لجماعة لا تستحقها.' },
+        { year: '1918م - 1920م', title: 'الانتداب وتعيين هربرت صموئيل وانتفاضة 1920م', desc: 'فتح باب الهجرة (55 ألفاً عام 1919م)، اندلاع انتفاضة نيسان 1920م، والمؤتمر الفلسطيني الثالث بحيفا (ديسمبر 1920م).' },
+        { year: '1929م - 1935م', title: 'أحداث البراق وثورة عز الدين القسام', desc: 'اندلاع ثورة البراق (1929م) دفاعاً عن المقدسات، ثم ثورة الشيخ عز الدين القسام المسلحة واستشهاده قرب جنين (1935م).' },
+        { year: '1936م - 1939م', title: 'الثورة الفلسطينية الكبرى والكتاب الأبيض', desc: 'إضراب عام لستة أشهر وثورة شاملة، أعقبها مقترح التقسيم ثم الكتاب الأبيض البريطاني (1939م) الذي رفضه الطرفان.' },
+        { year: '1945م - 1947م', title: 'موقف الملك عبد العزيز وقرار التقسيم', desc: 'الرفض القاطع للملك عبد العزيز أمام روزفلت في البحيرات المرة (1945م)، ثم قرار التقسيم بالأمم المتحدة (1947م).' },
+        { year: '15 مايو 1948م - 1949م', title: 'المجازر وقيام إسرائيل وهدنة رودس', desc: 'مجازر دير ياسين وقبية، إعلان قيام إسرائيل (15 مايو 1948م)، وسيطرتها على 77% من الأرض بعد هدنة رودس (1949م).' },
+        { year: '1950م - 1978م', title: 'التصريح الثلاثي والحروب وكامب ديفيد', desc: 'التصريح الثلاثي (1950م)، العدوان الثلاثي (1956م)، حرب 1967م، حرب رمضان (1973م)، واتفاقيات كامب ديفيد (سبتمبر 1978م).' }
+      ],
+      ummah: [
+        { year: 'القرن 4هـ / 10م', title: 'الانقسام السياسي إلى ثلاثة خلفاء', desc: 'ظهور الخليفة العباسي في بغداد، والفاطمي في مصر، والأموي في الأندلس؛ مما أضعف الوحدة الإسلامية.' },
+        { year: '1099م - 1254م', title: 'الحروب الصليبية في المشرق', desc: 'مذابح المسجد الأقصى (70 ألفاً) والمعرة (أكثر من 100 ألف)، واستنزاف الشام ومصر اقتصادياً وبشرياً.' },
+        { year: '657هـ - 658هـ / 1260م', title: 'الغزو المغولي ومعركة عين جالوت', desc: 'تدمير بغداد وسقوط دمشق بيد هولاكو (657هـ)، ثم هزيمة المغول في عين جالوت (658هـ / 1260م) على يد المماليك.' },
+        { year: '857هـ / 1453م', title: 'فتح القسطنطينية', desc: 'فتحت الدولة العثمانية القسطنطينية وجعلتها عاصمة لدار الإسلام، وحمت العالم الإسلامي 4 قرون.' },
+        { year: '897هـ / 1492م', title: 'سقوط غرناطة والكشوف الجغرافية', desc: 'سقوط آخر معاقل المسلمين بالأندلس، وتطويق البرتغال للعالم الإسلامي بتحويل طرق التجارة للمحيطات.' },
+        { year: '1798م - 1899م', title: 'الاحتلال والمقاومة الإصلاحية', desc: 'غزو نابليون لمصر (1798م)، احتلال بريطانيا لمصر (1882م)، تحرير المهدي للخرطوم (1885م) ثم حملة كتشنر (1899م)، ونشاط الأفغاني ومحمد عبده.' },
+        { year: '1923م - 1924م', title: 'اتفاقية لوزان وإلغاء الخلافة العثمانية', desc: 'فرض شروط لوزان الأربع (1923م)، وإلغاء الخلافة نهائياً في 2 مارس 1924م بيد مصطفى كمال أتاتورك، ثم قمع حركة الشيخ سعيد (1925م).' }
+      ]
+    };
+
+    // =========================================================================
+    // 3. بطاقات المراجعة التفاعلية (24 بطاقة)
+    // =========================================================================
+    const FLASHCARDS = [
+      { id: 1, unit: 1, q: 'ما الفرق الفقهي بين «دار الإسلام» و«دار الحرب» كما ورد في الكتاب؟', a: 'دار الإسلام هي الأرض التي تسودها شريعة الإسلام وتقام فيها حدوده وإن كان جل أهلها غير مسلمين؛ ودار الحرب هي الأرض التي تسود فيها شرائع غير شريعة الله وإن كان جل أهلها مسلمين.' },
+      { id: 2, unit: 1, q: 'كم تبلغ مساحة العالم الإسلامي وامتداده الجغرافي؟', a: 'أكثر من 25% من اليابسة (~31 مليون كم²)، ويمتد 17,000 كم شرقاً-غرباً (إندونيسيا إلى الرأس الأخضر)، و7,000 كم شمالاً-جنوباً (تركستان الغربية إلى موزمبيق).' },
+      { id: 3, unit: 1, q: 'ما التوزيع القاري والمذهبي للمسلمين في العالم حسب الكتاب؟', a: 'يزيد عددهم عن 1,200 مليون (>25% من سكان العالم): 70% في آسيا، 26% في أفريقيا، 4% في بقية القارات. والسنة 93% والشيعة 6%.' },
+      { id: 4, unit: 1, q: 'ما التعريف المختار لـ«الأمة الإسلامية» في الكتاب؟', a: '«قطاع كبير من البشرية آمن بالله رباً، وبمحمد ﷺ رسولاً، واتبع ما أنزل عليه وما جاء به»، وهو مفهوم أكثر شمولاً من العالم الإسلامي.' },
+      { id: 5, unit: 1, q: 'اذكر أمثلة الدول التي استشهد بها الكتاب على صعوبة الإحصاء السكاني الدقيق.', a: 'إثيوبيا (1970م: استبعاد المسلمين من العينة)، نيجيريا (1963م) ولبنان (1932م: التضخيم الطائفي والعرقي)، والغابون (10% في المصادر الأجنبية مقابل 40% في الإسلامية).' },
+      { id: 6, unit: 2, q: 'بمَ علّل الأمير شكيب أرسلان تأخر المسلمين وضعفهم؟', a: 'أرجعه إلى الجهل والعلم الناقص، وعدم الفهم الصحيح لمبادئ الإسلام والتخلق بأخلاقه السمحة، وضياع الإسلام بين الجامدين من علمائه والجاحدين عليه.' },
+      { id: 7, unit: 2, q: 'ما الحدثان الكبيران المرتبطان بالغزو المغولي عامي 657هـ و658هـ؟', a: 'في 657هـ سقطت دمشق بيد هولاكو بعد تدمير بغداد، وفي 658هـ / 1260م هزم المماليك المغول في معركة عين جالوت.' },
+      { id: 8, unit: 2, q: 'ما العلاقة بين حركة الكشوف الجغرافية في القرن 15م والاستعمار الأوروبي؟', a: 'بدأت بروح صليبية لتطويق العالم الإسلامي اقتصادياً وعسكرياً وتحويل تجارة الشرق عن الشام والمتوسط إلى المحيطات، مما أضعف المسلمين ومهد للاستعمار.' },
+      { id: 9, unit: 2, q: 'ما هي شروط اتفاقية لوزان الأربع (1923م) ومتى أُلغيت الخلافة؟', a: '(1) قطع كل صلة لتركيا بالإسلام، (2) إلغاء الخلافة، (3) إخراج الخليفة ومصادرة أملاكه وإخماد أنصارها، (4) دستور مدني بدل الإسلامي. وأُلغيت الخلافة في 2 مارس 1924م.' },
+      { id: 10, unit: 2, q: 'ما هي الآثار الأربعة لغياب الخلافة العثمانية؟', a: '(1) غياب دولة الإسلام الكبرى، (2) غياب الدولة الجامعة والحامية للمسلمين، (3) غياب الدولة التي ترهب الأعداء، (4) فتح الطريق أمام الصهيونية لفلسطين وحركة التغريب.' },
+      { id: 11, unit: 3, q: 'ما المعنى الحقيقي لمصطلح «العلمانية» (Secularism)؟', a: 'لا صلة لها بالعلم، بل تعني «اللادينية» وإبعاد الدين عن الحياة كلها (الاجتماعية والأخلاقية والتعليمية والسياسية)، وتسميها دائرة المعارف البريطانية الإلحاد العملي.' },
+      { id: 12, unit: 3, q: 'ما أساليب الاستعمار الأربعة في محاربة اللغة العربية؟', a: '(1) تحويل الحروف للاتينية (مؤتمر باكو 1926م)، (2) تشجيع اللهجات المحلية، (3) فرض لغة المستعمر رسمياً، (4) الدعوة للعامية بدلاً من الفصحى.' },
+      { id: 13, unit: 3, q: 'ما هدف التنصير الحقيقي كما صرّح به القس «زويمر»؟ وما منفذه الأساسي؟', a: 'إخراج المسلم من الإسلام ليصبح مخلوقاً لا صلة له بالله ولا بالأخلاق، ليكون طليعة الفتح الاستعماري. ويبقى «الفقر» منفذه الأساسي.' },
+      { id: 14, unit: 3, q: 'ما الدليل الذي أورده الكتاب على أن حرب جنوب السودان ليست حرباً دينية؟', a: 'أنها نتاج سياسة العزل البريطاني والتنصير، والدليل أن أغلبية اللاجئين الجنوبيين يلجأون إلى شمال السودان المسلم ويعيشون فيه بأمن وسلام.' },
+      { id: 15, unit: 3, q: 'ما أسباب المشكلة الكردية وكيف يرى الكتاب حلها؟', a: 'صنعها الاستعمار بترسيم حدود فرقت الأكراد بين العراق وتركيا وإيران ومزقت هويتهم؛ والحل بالتمسك بالإسلام والرابطة الإسلامية الجامعة.' },
+      { id: 16, unit: 4, q: 'متى حررت الحركة المهدية الخرطوم؟ وكيف انتهت دولتها؟', a: 'حررت الخرطوم عام 1885م، وسقطت عام 1899م أمام حملة الجنرال البريطاني كتشنر التي فرضت الحكم الثنائي الإنجليزي-المصري.' },
+      { id: 17, unit: 4, q: 'ما أبرز إسهامات جمال الدين الأفغاني في مقاومة الغزو الفكري والاستعماري؟', a: 'ألّف «الرد على الدهريين» رداً على أحمد خان، وأسس في باريس مع محمد عبده جمعية وجريدة «العروة الوثقى»، ودعا لوحدة المسلمين ونبذ الخرافات.' },
+      { id: 18, unit: 4, q: 'ما الأمران العظيمان اللذان دعا إليهما الشيخ محمد عبده؟', a: '(1) تحرير الفكر من قيد التقليد، و(2) فهم الدين على طريقة سلف الأمة، مع إصلاح الأزهر والتوفيق بين العلم والدين.' },
+      { id: 19, unit: 4, q: 'ما المجلة التي واصل بها محمد رشيد رضا دعوة أستاذه محمد عبده؟', a: 'مجلة «المنار»، التي كانت تفتتح مقالاتها بتفسير الشيخ محمد عبده وتدعو للرجوع لإسلام السلف الصالح.' },
+      { id: 20, unit: 5, q: 'ما الفرق بين المعيار العددي ومعيار النفوذ السياسي في تعريف الأقلية المسلمة؟', a: 'العددي: أن يقل المسلمون عن 50%. ومعيار النفوذ: انعدام النفوذ السياسي والاقتصادي الفاعل حتى لو كانوا أغلبية عددية (كما في إثيوبيا وتنزانيا).' },
+      { id: 21, unit: 5, q: 'لماذا شبّه الكتاب محاولة تذويب الأقلية المسلمة في أوروبا بـ«ذوبان الرمل في الماء»؟', a: 'لأن الإسلام دين يسيطر على كل مناحي حياة المسلم ويعطيه ذاتيته وهويته الخاصة التي يصعب تذويبها في المجتمع العلماني.' },
+      { id: 22, unit: 5, q: 'ما هي الأسباب الأربعة لنجاح الصهيونية في استلاب فلسطين؟', a: '(1) التخطيط الصهيوني والصبر عليه، (2) غياب التخطيط الإسلامي، (3) إبعاد الإسلام عن المعركة، (4) إقصاء الشعب الفلسطيني عن المعركة.' },
+      { id: 23, unit: 5, q: 'ما موقف الملك عبد العزيز آل سعود في لقاء البحيرات المرة عام 1945م؟', a: 'رفض رفضاً تاماً مقترح الرئيس الأمريكي روزفلت بإقامة دولة صهيونية والهجرة اليهودية إدراكاً لخطرها على فلسطين والعرب والإسلام.' },
+      { id: 24, unit: 5, q: 'ما نسبة الأراضي التي استولت عليها إسرائيل بعد هدنة رودس 1949م؟', a: 'سيطرت على 77% من أراضي فلسطين عوضاً عن 56% التي خصصها قرار التقسيم الأممي (1947م)، بعد أن كانت ملكيتهم 14% عام 1948م.' }
+    ];
+
+    // =========================================================================
+    // 4. نماذج المذاكرات المقالية (نمط أكاديمية باشاك شهير — أ. د. جبر الهلول)
+    // =========================================================================
+    const ESSAY_QUIZZES = [
+      {
+        id: 'q1',
+        title: 'المذاكرة الأولى (نموذج تدريبي)',
+        // badge: 'أكاديمية باشاك شهير',
+        subtitle: 'الوحدة 2 و 3 — الدرجة الكاملة: 20 درجة',
+        questions: [
+          {
+            id: 'q1_1',
+            marks: 10,
+            text: 'اذكر نتائج ضعف العالم الإسلامي، وعدد شروط اتفاقية لوزان 1923 التي فرضت على تركيا؟',
+            rubric: [
+              { pts: 2, text: 'أولاً: الابتعاد عن تطبيق الشريعة الإسلامية وحصرها في الأحوال الشخصية واستبدالها بالقوانين الوضعية (الهند، السودان 1899م، مصر، تونس 1914م، المغرب والجزائر).' },
+              { pts: 2, text: 'ثانياً: إلغاء الخلافة العثمانية (2 مارس 1924م) وانحلال الوحدة الإسلامية وغياب الدولة الحامية وفتح باب التغريب.' },
+              { pts: 1.5, text: 'شرط لوزان (1): قطع كل صلة لتركيا بالإسلام.' },
+              { pts: 1.5, text: 'شرط لوزان (2): إلغاء الخلافة الإسلامية.' },
+              { pts: 1.5, text: 'شرط لوزان (3): إخراج الخليفة العثماني ومصادرة أملاكه وإخماد كل حركة موالية للخلافة.' },
+              { pts: 1.5, text: 'شرط لوزان (4): اتخاذ دستور مدني بدلاً من الدستور القائم على الشريعة الإسلامية.' }
+            ]
+          },
+          {
+            id: 'q1_2',
+            marks: 10,
+            text: 'اشرح باختصار مفهوم الغزو الفكري، وعدد أربعاً من أساليب هذا الغزو؟',
+            rubric: [
+              { pts: 2, text: 'مفهوم الغزو الفكري: أسلوب استعماري يعتمد الوسائل غير العسكرية الناعمة والماكرة لغزو العقول والقلوب وإزالة مظاهر الحياة الإسلامية وصرف المسلمين عن دينهم، وهو أخطر من الغزو العسكري.' },
+              { pts: 2, text: 'أسلوب (1): نشر الفكر العلماني (اللادينية وإبعاد الدين عن الحياة كلها) والتشبث بالحضارة الغربية.' },
+              { pts: 2, text: 'أسلوب (2): بث النزعات القومية والإقليمية الضيقة (الفرعونية، الفارسية، الفينيقية، الآشورية، الكنعانية، البربرية).' },
+              { pts: 2, text: 'أسلوب (3): محاربة اللغة العربية (تحويل الحروف للاتينية، تشجيع اللهجات المحلية والعامية، فرض لغة المستعمر).' },
+              { pts: 2, text: 'أسلوب (4): توجيه التعليم وجهة لا إسلامية وطمس الهوية بالصحافة والأدب، أو بث الدعوات الهدامة (القاديانية والبهائية) والاستشراق والتنصير.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'q2',
+        title: 'المذاكرة الثانية (نموذج تدريبي)',
+        // badge: 'أكاديمية باشاك شهير',
+        subtitle: 'الوحدة 3 — الدرجة الكاملة: 20 درجة',
+        questions: [
+          {
+            id: 'q2_1',
+            marks: 10,
+            text: 'عرف حركة الاستشراق، واشرح باختصار أهم دوافعها، وأهدافها.',
+            rubric: [
+              { pts: 2.5, text: 'التعريف: اشتغال طائفة من الباحثين الغربيين بدراسة علوم الشرق وحضارته وأديانه ولغاته وثقافته؛ تلبس بلباس البحث العلمي وارتبط غالبه بالاستعمار.' },
+              { pts: 2.5, text: 'الدوافع: دينية (مساعدة التنصير وهدم العقيدة بالتشكيك) واستعمارية (معرفة مواطن الضعف لتسهيل السيطرة على المسلمين)، إضافة لدوافع علمية شخصية لدى قلة منصفة.' },
+              { pts: 2.5, text: 'الهدف الأول: ترسيخ التبعية للغرب والاستسلام لقيمه المادية الحديثة.' },
+              { pts: 2.5, text: 'الهدف الثاني: بث روح التخاذل الديني والتشكيك في الإسلام وتراثه وتغريب العقلية الإسلامية.' }
+            ]
+          },
+          {
+            id: 'q2_2',
+            marks: 10,
+            text: 'من مشكلات حاضر العالم الإسلامي التي ما زالت تنتظر حلاً: المشكلة الكردية، ناقش أسباب هذه المشكلة وتداعياتها، مبيناً رأيك في طريقة حلها.',
+            rubric: [
+              { pts: 3, text: 'أسبابها: صنعها الاستعمار حين خطط الحدود السياسية الفاصلة بين العرب والترك والإيرانيين، ووزّع الأكراد بين شمال العراق وجنوب شرق تركيا وغرب إيران.' },
+              { pts: 3, text: 'تداعياتها: تمزيق هوية الأكراد وتعميق شعورهم بالضياع والانحباس، وتأجيج الصراعات والحروب القومية والعنصرية بينهم وبين الأمم الإسلامية المجاورة.' },
+              { pts: 4, text: 'طريقة حلها (وفق الكتاب): التمسك بالإسلام والرابطة الإسلامية الجامعة بدلاً من النزعات القومية والعنصرية الضيقة، مما يعيد الوحدة وينهي النزاعات.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'q3',
+        title: 'المذاكرة الثالثة (نموذج تدريبي)',
+        badge: 'الوحدة 1 و 4',
+        subtitle: 'الوحدة 1 و 4 — الدرجة الكاملة: 20 درجة',
+        questions: [
+          {
+            id: 'q3_1',
+            marks: 10,
+            text: 'وضح مدلول العالم الإسلامي فقهياً وجغرافياً، واذكر أربعة من أسباب صعوبة التوصل لإحصاء دقيق لعدد المسلمين.',
+            rubric: [
+              { pts: 2, text: 'المدلول الفقهي: دار الإسلام (التي تسودها شريعة الإسلام وإن كان جل أهلها غير مسلمين) مقابل دار الحرب (التي تسود فيها شرائع غير شريعة الله).' },
+              { pts: 2, text: 'المدلول الجغرافي: الشعوب والدول ذات الأغلبية المسلمة (>50%) والأقليات المسلمة؛ ويشغل >25% من اليابسة (~31 مليون كم²) ويضم 56 دولة.' },
+              { pts: 3, text: 'سببان لصعوبة الإحصاء: غياب الإحصاءات الشاملة للانتماء الديني، وعدم إفصاح الدول لمساسه بالتوازنات السياسية، أو غياب الوعي الإحصائي والخوف من التجنيد والضرائب.' },
+              { pts: 3, text: 'سببان آخران: استبعاد المسلمين من العينات (إثيوبيا 1970م)، تضخيم الطوائف لأعدادها (نيجيريا 1963م ولبنان 1932م)، أو تباين المصادر (الغابون 10% مقابل 40%).' }
+            ]
+          },
+          {
+            id: 'q3_2',
+            marks: 10,
+            text: 'قارن بين منهج جمال الدين الأفغاني والشيخ محمد عبده في مقاومة الاستعمار وإصلاح الأمة الإسلامية.',
+            rubric: [
+              { pts: 2.5, text: 'جمال الدين الأفغاني: دعا للوحدة الإسلامية ومقاومة الاستعمار، وألّف «الرد على الدهريين» رداً على أحمد خان، وأسس في باريس جمعية وجريدة «العروة الوثقى».' },
+              { pts: 2.5, text: 'الشيخ محمد عبده: شارك في الثورة العرابية (1882م) وعاون الأفغاني في «العروة الوثقى»، وأصبح مفتي الديار المصرية (1899م)، وألّف «رسالة التوحيد».' },
+              { pts: 2.5, text: 'منهج محمد عبده الإصلاحي: تحرير الفكر من قيد التقليد، وفهم الدين على طريقة سلف الأمة، وإصلاح الأزهر والتوفيق بين العلم والدين.' },
+              { pts: 2.5, text: 'القاسم المشترك: كلاهما دعا للعودة للإسلام الصحيح ونبذ البدع والأخذ بالمفيد التقني من الغرب مع النهي عن التقليد الأعمى ثقافياً.' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'q4',
+        title: 'المذاكرة الرابعة (نموذج تدريبي)',
+        badge: 'الوحدة 5',
+        subtitle: 'الوحدة 5 (الأقليات وفلسطين) — الدرجة الكاملة: 20 درجة',
+        questions: [
+          {
+            id: 'q4_1',
+            marks: 10,
+            text: 'ناقش أبرز المشكلات التي تواجه الأقليات المسلمة في أوروبا وأفريقيا، واذكر أبرز الحلول المقترحة لمعالجتها.',
+            rubric: [
+              { pts: 2.5, text: 'مشكلات أقليات أوروبا: ضغوط الدولة القومية العلمانية بالتذويب، الغربة والتمييز، التشتت العرقي والمذهبي، «عقدة الأقلية»، وأزمة الجيل الجديد بين عالمين.' },
+              { pts: 2.5, text: 'مشكلات أقليات أفريقيا: الفقر والجهل للعزوف عن مدارس التنصير (الطلاب المسلمون في تنزانيا ≤ 10%)، الذوبان الثقافي وتحويل الحروف للاتينية، الفرقة وأزمة القيادة، والعزلة.' },
+              { pts: 2.5, text: 'حلول أوروبا: الانسجام والمشاركة الفاعلة مع الحفاظ على الهوية، توحيد القيادات، التعليم الديني، وربطهم بالعالم الإسلامي.' },
+              { pts: 2.5, text: 'حلول أفريقيا: التخطيط العلمي وتدريب الدعاة، إنشاء مدارس حديثة تجمع بين العلوم الدينية والعصرية، وفتح قنوات التواصل مع العالم الإسلامي.' }
+            ]
+          },
+          {
+            id: 'q4_2',
+            marks: 10,
+            text: 'عدد أسباب نجاح الحركة الصهيونية في استلاب فلسطين، واذكر أبرز سياسات الانتداب البريطاني لتهويدها (1918-1939م).',
+            rubric: [
+              { pts: 2.5, text: 'السببان (1) و(2): التخطيط الصهيوني المحكم والصبر عليه، مقابل غياب التخطيط لدى الأمة الإسلامية والاكتفاء بالشجب.' },
+              { pts: 2.5, text: 'السببان (3) و(4): إبعاد الإسلام عن المعركة (لأن دخوله يستنفر أكثر من مليار مسلم)، وإقصاء الشعب الفلسطيني عن المعركة عسكرياً وسياسياً.' },
+              { pts: 2.5, text: 'سياسة الانتداب في الهجرة والأرض: فتح باب الهجرة (من 55 ألفاً عام 1919م إلى 650 ألفاً عام 1948م)، وتسهيل تمليك الأراضي (إلى 14% عام 1948م).' },
+              { pts: 2.5, text: 'التمكين الإداري: الاعتراف بالوكالة اليهودية كدولة داخل دولة، وتعيين الصهيوني هربرت صموئيل مندوباً سامياً (1920م)، والاعتراف بالعبرية لغة رسمية.' }
+            ]
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 5. الأسئلة الموضوعية المتدرجة (15 سؤالاً مع تعليل خاص لكل خيار خاطئ)
+    // =========================================================================
+    const PRACTICE_QUESTIONS = [
+      // سهل (5)
+      {
+        id: 'p1', level: 'easy', levelLabel: 'سهل',
+        q: 'كم يبلغ عدد الدول الإسلامية كما أوردها الكتاب في الفصل الأول؟',
+        options: ['44 دولة', '56 دولة', '66 دولة', '90 دولة'],
+        correct: 1,
+        correctMsg: 'إجابة صحيحة! ذكر الكتاب أن عدد الدول الإسلامية (56) دولة، منها (21) دولة عربية و(35) دولة غير عربية.',
+        wrongReasons: {
+          0: 'خطأ: الرقم (44) ورد في الفصل السادس ضمن إحصائية لتواجد المسلمين في 90 دولة، بينما العدد المقرر للدول الإسلامية في الفصل الأول هو 56 دولة.',
+          2: 'خطأ: الرقم (66) مليوناً هو تقدير عدد الأقليات المسلمة في أوروبا، وليس عدد الدول الإسلامية.',
+          3: 'خطأ: الرقم (90) هو مجموع الدول التي فيها تواجد إسلامي (إسلامية + أقليات)، أما الدول الإسلامية فعددها 56 دولة.'
+        }
+      },
+      {
+        id: 'p2', level: 'easy', levelLabel: 'سهل',
+        q: 'في أي تاريخ أُلغيت الخلافة العثمانية نهائياً على يد مصطفى كمال أتاتورك؟',
+        options: ['2 نوفمبر 1917م', '14 مايو 1948م', '2 مارس 1924م', '15 مايو 1948م'],
+        correct: 2,
+        correctMsg: 'أحسنت! أُلغيت الخلافة العثمانية نهائياً في 2 مارس 1924م / 1342هـ تنفيذاً لشروط لوزان الأربع.',
+        wrongReasons: {
+          0: 'خطأ: 2 نوفمبر 1917م هو تاريخ صدور وعد بلفور المشؤوم.',
+          1: 'خطأ: 14 مايو 1948م هو تاريخ إعلان بريطانيا إنهاء الانتداب على فلسطين من جانبها.',
+          3: 'خطأ: 15 مايو 1948م هو تاريخ إعلان قيام دولة إسرائيل في فلسطين.'
+        }
+      },
+      {
+        id: 'p3', level: 'easy', levelLabel: 'سهل',
+        q: 'أي مضيق يتحكم في اتصال البحر الأحمر ببحر العرب؟',
+        options: ['مضيق هرمز', 'مضيق باب المندب', 'مضيق جبل طارق', 'مضيق ملقا'],
+        correct: 1,
+        correctMsg: 'ممتاز! مضيق باب المندب وخليج عدن يتحكمان في اتصال البحر الأحمر ببحر العرب.',
+        wrongReasons: {
+          0: 'خطأ: مضيق هرمز وخليج عُمان يتحكمان في اتصال المحيط الهندي بالخليج العربي.',
+          2: 'خطأ: مضيق جبل طارق يتحكم في اتصال المحيط الأطلسي بالبحر الأبيض المتوسط.',
+          3: 'خطأ: مضيق ملقا وسنغافورة يتحكمان في اتصال المحيط الهندي ببحر الصين الجنوبي والمحيط الهادي.'
+        }
+      },
+      {
+        id: 'p4', level: 'easy', levelLabel: 'سهل',
+        q: 'ما اسم الجريدة والجمعية التي أسسها جمال الدين الأفغاني ومحمد عبده في باريس؟',
+        options: ['المنار', 'الرسالة', 'العروة الوثقى', 'الرد على الدهريين'],
+        correct: 2,
+        correctMsg: 'صحيح! أسسا في باريس جمعية وجريدة «العروة الوثقى» لبث روح الوحدة ومقاومة الاستعمار.',
+        wrongReasons: {
+          0: 'خطأ: «المنار» هي المجلة التي أصدرها محمد رشيد رضا لمتابعة دعوة أستاذه محمد عبده.',
+          1: 'خطأ: لم ترد جريدة بهذا الاسم للأفغاني في الكتاب؛ الصحيح هو «العروة الوثقى».',
+          3: 'خطأ: «الرد على الدهريين» هو كتاب ألفه الأفغاني للرد على أحمد خان، وليس اسم الجريدة.'
+        }
+      },
+      {
+        id: 'p5', level: 'easy', levelLabel: 'سهل',
+        q: 'في أي مدينة سويسرية عُقد المؤتمر الصهيوني الأول عام 1897م؟',
+        options: ['لوزان', 'بال', 'جنيف', 'لاهاي'],
+        correct: 1,
+        correctMsg: 'إجابة دقيقة! عُقد المؤتمر الصهيوني الأول في مدينة «بال» بسويسرا في مايو 1897م برئاسة هرتزل.',
+        wrongReasons: {
+          0: 'خطأ: «لوزان» ارتبطت باتفاقية لوزان وشروطها الأربع لإلغاء الخلافة (1923م).',
+          2: 'خطأ: لم يُعقد المؤتمر الصهيوني الأول في جنيف؛ بل في مدينة «بال» بسويسرا.',
+          3: 'خطأ: «لاهاي» ذُكرت كمقر لمحكمة العدل الدولية التي وصلت إليها بعض القضايا الحدودية.'
+        }
+      },
+      // متوسط (5)
+      {
+        id: 'p6', level: 'medium', levelLabel: 'متوسط',
+        q: 'لماذا استشهد الكتاب بدولة «الغابون» عند حديثه عن صعوبة الإحصاء السكاني للمسلمين؟',
+        options: [
+          'لأنها استبعدت المسلمين من العينة عام 1970م',
+          'لتباين تقدير نسبة المسلمين فيها بين المصادر الأجنبية (10%) والإسلامية (40%)',
+          'بسبب تضخيم الطوائف لأعدادها لتوزيع الوظائف الدستورية عام 1932م',
+          'بسبب تضخيم المجموعات العرقية في تعداد عام 1963م'
+        ],
+        correct: 1,
+        correctMsg: 'رائع! استشهد الكتاب بالغابون كمثال على تباين المصادر (10% في الأجنبية مقابل 40% في الإسلامية).',
+        wrongReasons: {
+          0: 'خطأ: الدولة التي استبعدت المسلمين من العينة عام 1970م هي «إثيوبيا» وليس الغابون.',
+          2: 'خطأ: الدولة التي شهدت تضخيماً لتوزيع الوظائف الدستورية عام 1932م هي «لبنان».',
+          3: 'خطأ: تعداد عام 1963م ارتبط في الكتاب بتضخيم المجموعات العرقية والدينية في «نيجيريا».'
+        }
+      },
+      {
+        id: 'p7', level: 'medium', levelLabel: 'متوسط',
+        q: 'ما الفارق الجوهري بين رأي «الحركات السلفية» ورأي «الأفغاني ومحمد عبده» في أسباب تخلف المسلمين؟',
+        options: [
+          'السلفية أرجعته للابتعاد عن الدين والبدع والتفرق، بينما ربطه الأفغاني وعبده بالعزوف عن المفيد التقني الغربي مع رفض التقليد الأعمى',
+          'السلفية دعت للأخذ بالتقنية الغربية فقط، بينما رفض الأفغاني كل ما يأتي من الغرب',
+          'الأفغاني وعبده أرجعاه للتعصب الديني، بينما أرجعته السلفية للجهل فقط',
+          'لا يوجد أي اختلاف بينهما؛ فقد أرجع كلاهما التخلف إلى إلغاء الخلافة فقط'
+        ],
+        correct: 0,
+        correctMsg: 'مقارنة دقيقة تماماً لما ورد في الفصل الثاني من الكتاب!',
+        wrongReasons: {
+          1: 'خطأ: العكس هو الصحيح؛ فالأفغاني ومحمد عبده هما من دعوا للأخذ بالمفيد التقني الغربي مع رفض التقليد الأعمى ثقافياً.',
+          2: 'خطأ: الزعم بأن التعصب الديني هو سبب التأخر هو رأي «العلمانيين ونصارى العرب» الباطل.',
+          3: 'خطأ: الكتاب فرّق بوضوح بين تركيز السلفية على تنقية الدين من البدع، وتركيز الأفغاني وعبده على الاستفادة التقنية مع حفظ الهوية.'
+        }
+      },
+      {
+        id: 'p8', level: 'medium', levelLabel: 'متوسط',
+        q: 'ما وجه الشبه بين كتاب «الإسلام وأصول الحكم» لعلي عبد الرازق وكتاب «في الشعر الجاهلي» لطه حسين كما عرضهما الكتاب؟',
+        options: [
+          'كلاهما كُتب للرد على المستشرقين والدفاع عن الخلافة العثمانية',
+          'كلاهما مثّل امتداداً خطيراً للغزو الفكري والعلماني في صميم الفكر الإسلامي والنصوص الدينية',
+          'كلاهما ألفهما مستشرقون ألمان منصفون للإسلام',
+          'كلاهما دعا إلى إحياء المذاهب الأربعة وتوحيد القضاء الشرعي'
+        ],
+        correct: 1,
+        correctMsg: 'أحسنت! أشار الكتاب لخطورتهما في تبرير العلمانية من داخل الفكر الإسلامي والتشكيك في الروايات والنصوص الدينية.',
+        wrongReasons: {
+          0: 'خطأ: بل على العكس، طرح كتاب علي عبد الرازق العلمانية وتعدى كتاب طه حسين للنصوص الدينية.',
+          2: 'خطأ: المؤلفان من الكتاب العرب الذين تأثروا بالفكر الغربي وليسوا مستشرقين ألمان.',
+          3: 'خطأ: لم يدعُ أي من الكتابين لذلك؛ بل أوردهما المؤلف ضمن مظاهر طمس الهوية الفكرية.'
+        }
+      },
+      {
+        id: 'p9', level: 'medium', levelLabel: 'متوسط',
+        q: 'بماذا استشهد الكتاب في نموذج «إندونيسيا» عند حديثه عن خطر التنصير المعاصر؟',
+        options: [
+          'أنها خالية من المؤسسات التنصيرية بفضل كثافتها السكانية',
+          'خطة مؤتمر مالانج (1967م) لتنصير جزيرة جاوا خلال 60 عاماً وإحصاءات 1990م الضخمة للكنائس والمنصرين',
+          'أنها استبدلت اللغة الإندونيسية باللغة العربية في جميع مدارسها',
+          'أنها الدولة الوحيدة التي اعترفت بها هولندا كدولة خلافة إسلامية'
+        ],
+        correct: 1,
+        correctMsg: 'إجابة صحيحة! أورد الكتاب نموذج إندونيسيا ومؤتمر مالانج 1967م وإحصاءات 1990م لبيان حجم التآمر التنصيري.',
+        wrongReasons: {
+          0: 'خطأ: أورد الكتاب إحصاءات 1990م التي تثبت وجود 15,819 كنيسة بروتستانتية و10,520 كاثوليكية في إندونيسيا.',
+          2: 'خطأ: بل ذكر الكتاب أن الاستعمار نقل أحرف اللغة الإندونيسية من الحرف العربي إلى اللاتيني.',
+          3: 'خطأ: هولندا كانت الدولة المستعمرة لإندونيسيا ولا تزال مؤسساتها التنصيرية تعمل فيها.'
+        }
+      },
+      {
+        id: 'p10', level: 'medium', levelLabel: 'متوسط',
+        q: 'كيف تغيرت نسبة السيطرة اليهودية على أراضي فلسطين بين عام 1948م وهدنة رودس عام 1949م؟',
+        options: [
+          'من 4% إلى 14% فقط',
+          'من 14% ملكية (و56% في قرار التقسيم) إلى 77% بعد هدنة رودس',
+          'تراجعت من 77% إلى 56% بسبب تدخل الجيوش العربية',
+          'بقيت ثابتة عند 56% دون أي تغيير'
+        ],
+        correct: 1,
+        correctMsg: 'دقيق جداً! ارتفعت من 14% ملكية عام 1948م، إلى 56% بقرار التقسيم، ثم استولت على 77% بموجب هدنة رودس 1949م.',
+        wrongReasons: {
+          0: 'خطأ: نسبة 4% هي الحد الأقصى للملكية اليهودية في القدس عام 1948م، بينما وصلت السيطرة الكلية بعد رودس إلى 77%.',
+          2: 'خطأ: لم تتراجع السيطرة؛ بل استغل اليهود الهدنة في التسليح وتوسعوا إلى 77%.',
+          3: 'خطأ: تجاوزت إسرائيل النسبة المخصصة لها في قرار التقسيم (56%) لتستولي على 77%.'
+        }
+      },
+      // متقدم (5)
+      {
+        id: 'p11', level: 'hard', levelLabel: 'متقدم',
+        q: 'لماذا اضطر المؤلف لاستخدام مصطلح «العالم الإسلامي» بمعناه الجغرافي بدلاً من المصطلح الفقهي «دار الإسلام»؟',
+        options: [
+          'لأن دار الإسلام تشترط أن يكون جميع السكان من العرب فقط',
+          'لأن دار الإسلام فقهياً تشترط سيادة شريعة الإسلام وإقامة حدوده، والشريعة اليوم لا تطبق إلا في ديار قليلة',
+          'لأن الجغرافيين الأوروبيين ألغوا مصطلح دار الإسلام في مؤتمر باكو',
+          'لأن دار الحرب أصبحت تضم الدول الإسلامية ذات الأغلبية العددية فقط'
+        ],
+        correct: 1,
+        correctMsg: 'تحليل سليم 100%! المعيار الفقهي لدار الإسلام هو سيادة الشريعة، ولندرة تطبيقها اليوم استُخدم المعنى الجغرافي.',
+        wrongReasons: {
+          0: 'خطأ: الإسلام لكل الأجناس ولا تشترط دار الإسلام أن يكون أهلها عرباً، بل تشترط سيادة الشريعة حتى لو كان جل أهلها غير مسلمين.',
+          2: 'خطأ: مؤتمر باكو (1926م) كان خاصاً بنقل الحرف العثماني إلى اللاتيني وليس له علاقة بمصطلح دار الإسلام.',
+          3: 'خطأ: دار الحرب فقهياً هي الأرض التي تسودها شرائع غير شريعة الله، وليست مقيدة بالأغلبية العددية.'
+        }
+      },
+      {
+        id: 'p12', level: 'hard', levelLabel: 'متقدم',
+        q: 'ما العامل المشترك الذي جعل القس «زويمر» يركز على إخراج المسلم من الإسلام، وجعل الفرنسيين يستبدلون الشريعة بالأعراف البربرية؟',
+        options: [
+          'رغبتهما في إدخال المسلمين في الكنيسة بالقوة العسكرية المباشرة',
+          'يقينهما أن العقيدة والشريعة هما مكمن قوة الأمة، وأن التخلي عن التحاكم للشريعة تخلٍ نهائي عن الإسلام يسهل الاستعمار',
+          'رغبتهما في تطوير المناهج الزراعية في شمال أفريقيا',
+          'سعيهما لإنشاء وحدة إسلامية مستقلة عن الدولة العثمانية'
+        ],
+        correct: 1,
+        correctMsg: 'استنتاج عميق ومطابق تماماً لرؤية المؤلف في الفصلين الثاني والثالث!',
+        wrongReasons: {
+          0: 'خطأ: زويمر صرّح أن مهمتهم ليست إدخال المسلمين في المسيحية، بل إخراجهم من الإسلام والأخلاق ليكونوا طليعة الاستعمار.',
+          2: 'خطأ: الهدف لم يكن تنموياً أو زراعياً، بل استعمارياً فكرياً للقضاء على الهوية الإسلامية.',
+          3: 'خطأ: الاستعمار كان يرى الوحدة الإسلامية خطره الأعظم ويعمل بكل وسيلة لمنعها.'
+        }
+      },
+      {
+        id: 'p13', level: 'hard', levelLabel: 'متقدم',
+        q: 'لماذا يُعد المسلمون في «إثيوبيا وتنزانيا» ضمن الأقليات المسلمة في تصنيف الكتاب رغم ثقلهم العددي الكبير؟',
+        options: [
+          'لأن نسبتهم تقل عن 10% من إجمالي السكان',
+          'لتطبيق «معيار النفوذ السياسي»؛ حيث يفتقرون للنفوذ السياسي والاقتصادي وتتحكم فيهم أقليات نصرانية هيأها الاستعمار',
+          'لأنهم يعيشون في قارة أوروبا ويخضعون للدولة القومية العلمانية',
+          'لأنهم رفضوا المشاركة في مؤتمر حيفا والانتفاضات الشعبية'
+        ],
+        correct: 1,
+        correctMsg: 'ممتاز! هذا يجسد الفرق الدقيق الذي أوضحه الكتاب بين المعيار العددي ومعيار النفوذ السياسي للأقليات.',
+        wrongReasons: {
+          0: 'خطأ: نسبة 10% هي نسبة «الطلاب المسلمين» في التعليم الحديث بتنزانيا، وليست نسبة السكان المسلمين.',
+          2: 'خطأ: إثيوبيا وتنزانيا دولتان أفريقيتان وليستا في قارة أوروبا.',
+          3: 'خطأ: مؤتمر حيفا (1920م) خاص بقضية فلسطين ولا علاقة له بأقليات أفريقيا.'
+        }
+      },
+      {
+        id: 'p14', level: 'hard', levelLabel: 'متقدم',
+        q: 'ما السبب الاستراتيجي الأهم الذي دفع الصهيونية وحلفاءها الاستعماريين إلى «إبعاد الإسلام عن المعركة» في فلسطين؟',
+        options: [
+          'لأن الإسلام يدعو للانعزال وترك الجهاد عند غزو الديار',
+          'لأن دخول الإسلام يعني استنفار ثقل بشري وسياسي واقتصادي يفوق مليار مسلم، مع فريضة الجهاد والإعداد، وهو ما لا طاقة لهم به',
+          'لأن الدول العربية رفضت الاعتراف بوجود أقليات مسلمة في آسيا',
+          'لأن وعد بلفور نص على إبقاء المسجد الأقصى تحت إدارة الدولة العثمانية'
+        ],
+        correct: 1,
+        correctMsg: 'تحليل ممتاز! أوضح الكتاب أن دخول الإسلام في المعركة يعني استنفار أكثر من مليار مسلم وثقل لا قبل للصهيونية به.',
+        wrongReasons: {
+          0: 'خطأ: بل العكس، الإسلام يعتبر الجهاد فرض عين إذا غُزيت ديار الإسلام ويدعو للإعداد المعنوي والعسكري.',
+          2: 'خطأ: لم يكن السبب رفضاً للأقليات، بل خطة صهيونية واستعمارية متعمدة لإبعاد العمق الإسلامي.',
+          3: 'خطأ: وعد بلفور (1917م) تآمر على أملاك الدولة العثمانية ولم ينص على إبقاء الأقصى تحت إدارتها.'
+        }
+      },
+      {
+        id: 'p15', level: 'hard', levelLabel: 'متقدم',
+        q: 'ما الحل المتوازن الذي اقترحه الكتاب للأقليات المسلمة في أوروبا وأفريقيا لمواجهة التهميش والذوبان الثقافي؟',
+        options: [
+          'الانعزال التام والتقوقع داخل أحياء مغلقة ورفض التعليم العصري',
+          'الاندماج الكامل والتخلي عن الأسماء الإسلامية لقبولهم اجتماعياً',
+          'المشاركة الفاعلة بانسجام دون ذوبان، مع توحيد القيادة وإنشاء مدارس حديثة تجمع بين العلوم الدينية والعصرية',
+          'الاعتماد الكلي على المساعدات الخارجية والتركيز على عقدة الاضطهاد'
+        ],
+        correct: 2,
+        correctMsg: 'إجابة نموذجية! رفض الكتاب الانعزال والذوبان، ودعا للمشاركة الفاعلة مع حفظ الهوية والجمع بين الدين والعلم العصري.',
+        wrongReasons: {
+          0: 'خطأ: نصّ الكتاب صراحة على أنه «يخطئ من يظن أن إنقاذ الأقليات يكون بانعزالها والتقوقع».',
+          1: 'خطأ: حذّر الكتاب بشدة من التخلي عن الأسماء الإسلامية والذوبان الثقافي.',
+          3: 'خطأ: انتقد الكتاب «عقدة الاضطهاد» لأنها تقلل اعتماد الأقليات على أنفسها وتشل نشاطها الداخلي.'
+        }
+      }
+    ];
+
+    // =========================================================================
+    // 6. الاختبار النهائي التشخيصي (15 سؤالاً: 3 من كل وحدة)
+    // =========================================================================
+    const EXAM_QUESTIONS = [
+      { unit: 1, topic: 'السكان والتوزيع الجغرافي', q: 'كم تبلغ نسبة المسلمين الموجودين في قارة آسيا من مجموع المسلمين في العالم؟', options: ['26%', '70%', '16.2%', '93%'], correct: 1, exp: 'يوجد في قارة آسيا حوالي 70% من مجموع المسلمين، وفي أفريقيا 26%، وفي بقية القارات 4%.' },
+      { unit: 1, topic: 'المضايق الاستراتيجية', q: 'ما المضيق الذي يتحكم في اتصال المحيط الهندي ببحر الصين الجنوبي والمحيط الهادي؟', options: ['مضيق هرمز', 'مضيق جبل طارق', 'مضيق ملقا وسنغافورة', 'مضيق البوسفور'], correct: 2, exp: 'يتحكم مضيق ملقا وسنغافورة في اتصال المحيط الهندي ببحر الصين الجنوبي والمحيط الهادي.' },
+      { unit: 1, topic: 'مقومات الأمة والوحدة', q: 'كم تبلغ نسبة الكتلة الإيرانية-الأفغانية-الباكستانية-الكشميرية-البنغالية من مسلمي العالم؟', options: ['16.2%', '22%', '13.5%', '12%'], correct: 1, exp: 'تُعد أكبر الكتل السكانية الست بحوالي 200 مليون نسمة، أي بنسبة 22% من المسلمين في العالم.' },
+      { unit: 2, topic: 'الحروب الصليبية والأندلس', q: 'في أي عام سقطت غرناطة آخر معاقل المسلمين في الأندلس؟', options: ['857هـ / 1453م', '658هـ / 1260م', '897هـ / 1492م', '1342هـ / 1924م'], correct: 2, exp: 'سقطت غرناطة عام 897هـ / 1492م بيد فرديناند وإيزابيلا.' },
+      { unit: 2, topic: 'تعطيل الشريعة الإسلامية', q: 'في أي عام ألغى الاستعمار البريطاني الشريعة الإسلامية في السودان بعد القضاء على الثورة المهدية؟', options: ['1798م', '1882م', '1899م', '1914م'], correct: 2, exp: 'ألغاها في السودان عام 1317هـ / 1899م عقب القضاء على الثورة المهدية.' },
+      { unit: 2, topic: 'إلغاء الخلافة العثمانية', q: 'ما الحركة الإسلامية التي قامت في تركيا عام 1925م مطالبة بإعادة الخلافة وقمعها أتاتورك بوحشية؟', options: ['الثورة العرابية', 'حركة الشيخ سعيد', 'الحركة المهدية', 'ثورة البراق'], correct: 1, exp: 'حركة الشيخ سعيد (1925م) نادت بإعادة الخلافة، فقمعها أتاتورك واستشهد فيها أكثر من نصف مليون مسلم.' },
+      { unit: 3, topic: 'محاربة اللغة العربية', q: 'في أي مؤتمر وعام نقل مصطفى كمال أتاتورك أحرف اللغة العثمانية العربية إلى اللاتينية؟', options: ['مؤتمر مالانج 1967م', 'مؤتمر باكو 1926م', 'مؤتمر بال 1897م', 'مؤتمر لوزان 1923م'], correct: 1, exp: 'نقل أتاتورك أحرف اللغة العثمانية العربية إلى اللاتينية في مؤتمر باكو عام 1926م.' },
+      { unit: 3, topic: 'الدعوات الهدامة', q: 'من هو مؤسس مدرسة «عليكرة» في الهند الذي روّج للمذهب الطبيعي الدهري بدعم بريطاني؟', options: ['السيد أحمد خان', 'هربرت صموئيل', 'ليوبولد فايس', 'القس زويمر'], correct: 0, exp: 'تبنى الإنجليز السيد أحمد خان وساعدوه في بناء مدرسة «عليكرة» لبث أفكاره الضالة بين المسلمين.' },
+      { unit: 3, topic: 'الميراث الاستعماري والحدود', q: 'ما الإقليم السوري الذي اقتطعه الاستعمار وألحقه بتركيا ضمن المشكلات الحدودية المصطنعة؟', options: ['قضية حلايب', 'لواء الإسكندرونة', 'شط العرب', 'شمال بورنيو'], correct: 1, exp: 'اقتطع الاستعمار لواء الإسكندرونة السوري وألحقه بتركيا لإثارة الصراعات الحدودية.' },
+      { unit: 4, topic: 'الحركة المهدية', q: 'من القائد البريطاني الذي قاد الحملة التي قضت على الدولة المهدية عام 1899م؟', options: ['نابليون', 'كتشنر', 'بلفور', 'غلادستون'], correct: 1, exp: 'قاد الجنرال البريطاني «كتشنر» الحملة عام 1899م وبسط الحكم الثنائي الإنجليزي-المصري في السودان.' },
+      { unit: 4, topic: 'جمال الدين الأفغاني', q: 'ما اسم الكتاب الذي ألفه جمال الدين الأفغاني لتفنيد أفكار أحمد خان الهدامة؟', options: ['رسالة التوحيد', 'الرد على الدهريين', 'مستقبل الثقافة', 'الدولة اليهودية'], correct: 1, exp: 'ألف الأفغاني كتاب «الرد على الدهريين» للرد على أحمد خان والماديين.' },
+      { unit: 4, topic: 'الشيخ محمد عبده ومحمد رشيد رضا', q: 'ما المنصب الديني الرفيع الذي شغله الشيخ محمد عبده في مصر عام 1899م؟', options: ['شيخ الأزهر', 'مفتي الديار المصرية', 'رئيس مجلس النواب', 'قاضي القضاة في إسطنبول'], correct: 1, exp: 'شغل الشيخ محمد عبده منصب مفتي الديار المصرية عام 1899م، كما كان عضواً بمجلس الأزهر.' },
+      { unit: 5, topic: 'الأقليات المسلمة في أفريقيا', q: 'كم لا تتجاوز نسبة الطلاب المسلمين في التعليم الحديث بدولة تنزانيا رغم كون غالبيتها من المسلمين؟', options: ['10%', '33%', '50%', '70%'], correct: 0, exp: 'في بلد مثل تنزانيا غالبيته من المسلمين لا يتجاوز عدد الطلاب المسلمين 10% بسبب احتكار التنصير للتعليم المدني.' },
+      { unit: 5, topic: 'الانتداب البريطاني على فلسطين', q: 'من أول مندوب سامٍ بريطاني عُيّن في فلسطين عام 1920م للإشراف على تهويدها؟', options: ['آرثر بلفور', 'هربرت صموئيل', 'تيودور هرتزل', 'اللورد موين'], correct: 1, exp: 'عُيّن اليهودي الصهيوني هربرت صموئيل كأول مندوب سامٍ بريطاني في فلسطين عام 1920م.' },
+      { unit: 5, topic: 'الحروب العربية الإسرائيلية', q: 'ما أبرز نتيجة ترتبت على حرب يونيو / الأيام الستة عام 1967م كما ورد في الكتاب؟', options: ['عبور الجيش المصري لخط بارليف', 'احتلال القدس الشرقية والضفة الغربية وهضبة الجولان وشبه جزيرة سيناء', 'إصدار الكتاب الأبيض البريطاني', 'عقد مؤتمر حيفا الثالث'], correct: 1, exp: 'أسفرت حرب 1967م عن احتلال القدس الشرقية والضفة الغربية وهضبة الجولان وشبه جزيرة سيناء.' }
+    ];
+
+    // =========================================================================
+    // حالة التطبيق (State)
+    // =========================================================================
+    const state = {
+      activeTab: 'lessons',
+      activeUnit: 1,
+      completedUnits: new Set(),
+      openAccordions: { '1-0': true, '2-0': true, '3-0': true, '4-0': true, '5-0': true },
+      activeSim: 1,
+      activeStrait: 'suez',
+      popMode: 'blocs',
+      activeColonial: 'secularism',
+      timelineMode: 'palestine',
+      // بطاقات المراجعة
+      fcFilter: 'all',
+      fcList: [...FLASHCARDS],
+      fcIndex: 0,
+      fcFlipped: false,
+      fcMastered: new Set(),
+      fcReview: new Set(),
+      // المذاكرات والأسئلة
+      practiceMode: 'essays',
+      activeEssayQuiz: 'q1',
+      essayUserText: {},
+      essayRevealed: {},
+      essayChecked: {},
+      practiceLevel: 'all',
+      practiceAnswers: {},
+      // الاختبار النهائي
+      examAnswers: {},
+      examSubmitted: false
+    };
+
+    // =========================================================================
+    // أدوات مساعدة والتنقل العام
+    // =========================================================================
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      const m = document.getElementById('toast-msg');
+      if (!t || !m) return;
+      m.textContent = msg;
+      t.classList.remove('hidden');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.add('hidden'), 2800);
+    }
+
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      document.querySelectorAll('.tab-section').forEach(sec => {
+        if (sec.id === 'sec-' + tabId) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+
+      // تحديث أزرار الكمبيوتر
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        const active = btn.dataset.tab === tabId;
+        btn.className = active
+          ? 'nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all bg-emeraldDark text-white shadow-sm'
+          : 'nav-btn px-4 py-2 rounded-xl text-sm font-bold transition-all text-slate-600 hover:text-emeraldDark hover:bg-white';
+      });
+
+      // تحديث أزرار الهاتف السريعة
+      document.querySelectorAll('.nav-btn-mobile').forEach(btn => {
+        const active = btn.dataset.tab === tabId;
+        btn.className = 'nav-btn-mobile px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap ' + (
+          active ? 'bg-emeraldDark text-white border-emeraldDark shadow-sm' : 'bg-cream text-slate-700 border-slate-200'
+        );
+      });
+
+      // ضمان تحديث محتوى صفحة الأسئلة عند فتحها
+      if (tabId === 'practice') {
+        renderEssayQuizzes();
+        renderPracticeQuestions();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateGlobalProgress() {
+      const uPct = (state.completedUnits.size / 5) * 30;
+      const fcPct = (state.fcMastered.size / FLASHCARDS.length) * 30;
+      const pCount = Object.keys(state.practiceAnswers).length;
+      const pPct = (pCount / PRACTICE_QUESTIONS.length) * 20;
+      const ePct = state.examSubmitted ? 20 : (Object.keys(state.examAnswers).length / EXAM_QUESTIONS.length) * 10;
+      const total = Math.min(100, Math.round(uPct + fcPct + pPct + ePct));
+
+      const gText = document.getElementById('global-progress-text');
+      const gBar = document.getElementById('global-progress-bar');
+      const mText = document.getElementById('mobile-progress-text');
+      const mBar = document.getElementById('mobile-progress-bar');
+      const uDone = document.getElementById('units-done-count');
+
+      if (gText) gText.textContent = total + '%';
+      if (gBar) gBar.style.width = total + '%';
+      if (mText) mText.textContent = total + '%';
+      if (mBar) mBar.style.width = total + '%';
+      if (uDone) uDone.textContent = `${state.completedUnits.size} / 5`;
+    }
+
+    // =========================================================================
+    // القسم 1: الملخص الشامل (Accordions)
+    // =========================================================================
+    function renderUnits() {
+      const pills = document.getElementById('unit-pills');
+      const container = document.getElementById('unit-content');
+      if (!pills || !container) return;
+
+      pills.innerHTML = UNITS_DATA.map(u => {
+        const isActive = state.activeUnit === u.id;
+        const isDone = state.completedUnits.has(u.id);
+        return `
+          <button type="button" onclick="selectUnit(${u.id})" class="text-right p-3.5 rounded-2xl border-2 transition-all flex flex-col justify-between ${
+            isActive
+              ? 'bg-emeraldDark text-white border-emeraldDark shadow-md'
+              : 'bg-white text-slateText border-slate-200/80 hover:border-emeraldMain/50'
+          }">
+            <div class="flex items-center justify-between w-full mb-1.5">
+              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${isActive ? 'bg-white/20 text-amber-200' : 'bg-emeraldLight text-emeraldDark'}">${u.shortTitle}</span>
+              ${isDone ? '<span class="text-[11px] font-bold bg-amber-400 text-emeraldDark px-2 py-0.5 rounded-full">✓ تمت</span>' : ''}
+            </div>
+            <div class="font-bold text-sm leading-snug">${u.title}</div>
+          </button>
+        `;
+      }).join('');
+
+      const unit = UNITS_DATA.find(u => u.id === state.activeUnit);
+      const isDone = state.completedUnits.has(unit.id);
+
+      container.innerHTML = `
+        <div class="bg-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-sm border border-slate-200/80">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 mb-5 border-b border-slate-100">
+            <div>
+              <span class="text-xs font-bold text-goldHeritage">${unit.shortTitle} • ${unit.blocks.length} محاور تفصيلية</span>
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-emeraldDark mt-0.5">${unit.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1">${unit.subtitle}</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              <button type="button" onclick="toggleAllAccordions(${unit.id}, true)" class="px-3.5 py-2 rounded-xl bg-cream border border-slate-200 text-xs font-bold text-slate-700 hover:border-emeraldDark">توسيع الكل ▾</button>
+              <button type="button" onclick="toggleAllAccordions(${unit.id}, false)" class="px-3.5 py-2 rounded-xl bg-cream border border-slate-200 text-xs font-bold text-slate-700 hover:border-emeraldDark">طي الكل ▴</button>
+              <button type="button" onclick="toggleUnitComplete(${unit.id})" class="px-4 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all ${
+                isDone
+                  ? 'bg-emeraldMain text-white shadow-sm'
+                  : 'bg-goldBg text-goldHeritage border border-goldSoft/50 hover:bg-emeraldDark hover:text-white'
+              }">
+                ${isDone ? '✓ تمت المراجعة' : 'تحديد كـ «تمت المراجعة»'}
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-3.5">
+            ${unit.blocks.map((b, bIdx) => {
+              const key = `${unit.id}-${bIdx}`;
+              const isOpen = !!state.openAccordions[key];
+              return `
+                <div class="rounded-2xl border ${isOpen ? 'border-emeraldMain/40 bg-cream/60 shadow-sm' : 'border-slate-200/80 bg-cream/30'} overflow-hidden transition-all">
+                  <button type="button" onclick="toggleAccordion('${key}')" class="w-full flex items-center justify-between gap-3 p-4 md:p-5 text-right hover:bg-emeraldLight/30 transition-colors">
+                    <div class="flex items-center gap-3">
+                      <span class="w-7 h-7 rounded-lg ${isOpen ? 'bg-emeraldDark text-white' : 'bg-emeraldLight text-emeraldDark'} font-extrabold text-xs flex items-center justify-center shrink-0">${bIdx + 1}</span>
+                      <h4 class="text-sm sm:text-base md:text-lg font-bold text-emeraldDark">${b.heading}</h4>
+                    </div>
+                    <span class="text-emeraldDark font-bold text-lg transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}">▾</span>
+                  </button>
+                  <div class="${isOpen ? 'block' : 'hidden'} px-4 md:px-6 pb-5 pt-1 border-t border-slate-200/60">
+                    ${b.callout ? `
+                      <div class="bg-emeraldLight/80 border-r-4 border-emeraldDark rounded-xl p-4 my-3 text-xs sm:text-sm md:text-base text-emeraldDark font-semibold leading-relaxed">
+                        ${b.callout}
+                      </div>
+                    ` : ''}
+                    ${b.stats ? `
+                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 my-3">
+                        ${b.stats.map(s => `
+                          <div class="bg-white rounded-xl p-3.5 border border-slate-200/80 shadow-sm">
+                            <div class="text-xs text-slate-500 font-semibold">${s.label}</div>
+                            <div class="text-xs sm:text-sm font-extrabold text-emeraldDark mt-1">${s.val}</div>
+                          </div>
+                        `).join('')}
+                      </div>
+                    ` : ''}
+                    <ul class="space-y-2.5 text-xs sm:text-sm md:text-base text-slate-700 leading-relaxed mt-3">
+                      ${b.points.map(p => `
+                        <li class="flex items-start gap-2.5">
+                          <span class="text-goldHeritage font-bold mt-0.5">•</span>
+                          <span>${p}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5">
+            <button type="button" onclick="selectUnit(${unit.id > 1 ? unit.id - 1 : 5})" class="px-4 py-2.5 rounded-xl bg-cream border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-emeraldDark">→ الوحدة السابقة</button>
+            <button type="button" onclick="toggleUnitComplete(${unit.id})" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm ${isDone ? 'bg-emeraldLight text-emeraldDark' : 'bg-emeraldDark text-white'}">
+              ${isDone ? '✓ تمت المراجعة' : 'إتمام مراجعة الوحدة ✓'}
+            </button>
+            <button type="button" onclick="selectUnit(${unit.id < 5 ? unit.id + 1 : 1})" class="px-4 py-2.5 rounded-xl bg-cream border border-slate-200 text-xs sm:text-sm font-bold text-slate-700 hover:border-emeraldDark">الوحدة التالية ←</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function toggleAccordion(key) {
+      state.openAccordions[key] = !state.openAccordions[key];
+      renderUnits();
+    }
+
+    function toggleAllAccordions(unitId, expand) {
+      const unit = UNITS_DATA.find(u => u.id === unitId);
+      if (!unit) return;
+      unit.blocks.forEach((_, idx) => {
+        state.openAccordions[`${unitId}-${idx}`] = expand;
+      });
+      renderUnits();
+    }
+
+    function selectUnit(id) {
+      state.activeUnit = id;
+      renderUnits();
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+
+    function toggleUnitComplete(id) {
+      if (state.completedUnits.has(id)) {
+        state.completedUnits.delete(id);
+        showToast('تم إلغاء تحديد الوحدة كمراجعة.');
+      } else {
+        state.completedUnits.add(id);
+        showToast('أحسنت! تم تسجيل مراجعة الوحدة وتحديث شريط التقدم.');
+      }
+      renderUnits();
+      updateGlobalProgress();
+    }
+
+    // =========================================================================
+    // القسم 2: المحاكاة التفاعلية
+    // =========================================================================
+    function switchSim(num) {
+      state.activeSim = num;
+      document.querySelectorAll('.sim-panel').forEach((p, idx) => {
+        p.classList.toggle('hidden', idx + 1 !== num);
+      });
+      document.querySelectorAll('.sim-tab-btn').forEach((b, idx) => {
+        const active = idx + 1 === num;
+        b.className = 'sim-tab-btn px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold border transition-all ' + (
+          active ? 'bg-emeraldDark text-white border-emeraldDark shadow-sm' : 'bg-white text-slate-700 border-slate-200 hover:border-emeraldMain'
+        );
+      });
+    }
+
+    function selectStrait(key) {
+      state.activeStrait = key;
+      const d = STRAITS_DATA[key];
+      if (!d) return;
+
+      Object.keys(STRAITS_DATA).forEach(k => {
+        const dot = document.getElementById('dot-' + k);
+        if (dot) {
+          dot.setAttribute('fill', k === key ? '#b8860b' : '#0f5132');
+          dot.setAttribute('r', k === key ? '11' : '8');
+        }
+      });
+
+      const btns = document.getElementById('strait-buttons');
+      if (btns) {
+        btns.innerHTML = Object.entries(STRAITS_DATA).map(([k, v]) => `
+          <button type="button" onclick="selectStrait('${k}')" class="p-2 rounded-xl text-xs font-bold border transition-all ${
+            k === key ? 'bg-emeraldDark text-white border-emeraldDark' : 'bg-white text-slate-700 border-slate-200 hover:border-emeraldMain'
+          }">${v.name}</button>
+        `).join('');
+      }
+
+      const info = document.getElementById('strait-info');
+      if (info) {
+        info.innerHTML = `
+          <span class="inline-block bg-goldBg text-goldHeritage text-xs font-bold px-3 py-1 rounded-full border border-goldSoft/40 mb-3">ممر بحري استراتيجي</span>
+          <h4 class="text-lg sm:text-xl font-bold text-emeraldDark mb-2">${d.name}</h4>
+          <div class="bg-white rounded-xl p-3 border border-slate-200 mb-3">
+            <div class="text-xs text-slate-500 font-semibold">المسطحات المائية التي يربطها:</div>
+            <div class="text-sm font-bold text-emeraldMain mt-0.5">${d.connects}</div>
+          </div>
+          <div class="text-xs text-slate-500 font-semibold mb-1">الموقع: <span class="text-slate-700">${d.location}</span></div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mt-2">${d.importance}</p>
+        `;
+      }
+    }
+
+    function setPopMode(mode) {
+      state.popMode = mode;
+      ['blocs', 'continents', 'minorities'].forEach(m => {
+        const btn = document.getElementById('pop-btn-' + m);
+        if (btn) {
+          btn.className = 'pop-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ' + (
+            m === mode ? 'bg-emeraldDark text-white border-emeraldDark' : 'bg-cream text-slate-700 border-slate-200 hover:border-emeraldMain'
+          );
+        }
+      });
+
+      const wrap = document.getElementById('pop-content');
+      if (!wrap) return;
+
+      if (mode === 'blocs') {
+        const blocs = [
+          { name: 'الكتلة الإيرانية - الأفغانية - الباكستانية - الكشميرية - البنغالية', pct: 22, num: '200 مليون نسمة', color: 'bg-emeraldDark' },
+          { name: 'الكتلة الأفريقية (النطاق الصحراوي وشرق أفريقيا)', pct: 19.6, num: '178 مليون نسمة', color: 'bg-emeraldMain' },
+          { name: 'الكتلة العربية (مجموعة الدول العربية)', pct: 16.2, num: '147 مليون نسمة', color: 'bg-goldHeritage' },
+          { name: 'الكتلة الإندونيسية - الماليزية', pct: 13.5, num: '123 مليون نسمة', color: 'bg-goldSoft' },
+          { name: 'الكتلة التركية - القوقازية', pct: 12, num: '110 مليون نسمة', color: 'bg-teal-700' },
+          { name: 'الكتلة التركستانية (الصين 18م + الاتحاد السوفيتي السابق 39م)', pct: 6.5, num: '57 مليون نسمة', color: 'bg-slate-600' }
+        ];
+        wrap.innerHTML = `
+          <div class="space-y-3.5">
+            ${blocs.map(b => `
+              <div class="bg-cream rounded-2xl p-4 border border-slate-200/80">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                  <span class="font-bold text-xs sm:text-sm text-slateText">${b.name}</span>
+                  <span class="text-xs font-extrabold text-emeraldDark">${b.pct}% (${b.num})</span>
+                </div>
+                <div class="w-full h-3.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full ${b.color} rounded-full" style="width: ${(b.pct / 24) * 100}%"></div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (mode === 'continents') {
+        wrap.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div class="flex justify-center">
+              <svg viewBox="0 0 220 220" class="w-52 h-52 sm:w-56 sm:h-56">
+                <circle cx="110" cy="110" r="80" fill="none" stroke="#e2e8f0" stroke-width="34" />
+                <circle cx="110" cy="110" r="80" fill="none" stroke="#0f5132" stroke-width="34" stroke-dasharray="351.8 502.6" transform="rotate(-90 110 110)" />
+                <circle cx="110" cy="110" r="80" fill="none" stroke="#d4a338" stroke-width="34" stroke-dasharray="130.7 502.6" stroke-dashoffset="-351.8" transform="rotate(-90 110 110)" />
+                <circle cx="110" cy="110" r="80" fill="none" stroke="#0284c7" stroke-width="34" stroke-dasharray="20.1 502.6" stroke-dashoffset="-482.5" transform="rotate(-90 110 110)" />
+                <text x="110" y="105" text-anchor="middle" font-size="16" font-weight="800" fill="#0f5132">+1,200 مليون</text>
+                <text x="110" y="126" text-anchor="middle" font-size="11" fill="#64748b">أكثر من 25% من العالم</text>
+              </svg>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-emeraldLight/70 border border-emeraldMain/20">
+                <div class="flex items-center gap-3"><span class="w-4 h-4 rounded-full bg-emeraldDark"></span><span class="font-bold text-sm text-emeraldDark">قارة آسيا</span></div>
+                <span class="text-xl font-extrabold text-emeraldDark">70%</span>
+              </div>
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-goldBg border border-goldSoft/40">
+                <div class="flex items-center gap-3"><span class="w-4 h-4 rounded-full bg-goldSoft"></span><span class="font-bold text-sm text-goldHeritage">قارة أفريقيا</span></div>
+                <span class="text-xl font-extrabold text-goldHeritage">26%</span>
+              </div>
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-sky-50 border border-sky-200">
+                <div class="flex items-center gap-3"><span class="w-4 h-4 rounded-full bg-sky-600"></span><span class="font-bold text-sm text-sky-900">بقية القارات (أوروبا، أمريكا، أستراليا)</span></div>
+                <span class="text-xl font-extrabold text-sky-800">4%</span>
+              </div>
+              <p class="text-xs text-slate-600 pt-1">أهل السنة <strong>93%</strong>، الشيعة <strong>6%</strong>، والمسلمون في الدول العربية <strong>16.2%</strong>.</p>
+            </div>
+          </div>
+        `;
+      } else {
+        wrap.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="bg-emeraldLight/60 rounded-2xl p-5 border border-emeraldMain/30">
+              <span class="inline-block bg-emeraldDark text-white text-xs font-bold px-3 py-1 rounded-full mb-3">المعيار العددي (< 50%)</span>
+              <h4 class="text-base sm:text-lg font-bold text-emeraldDark mb-2">توزيع الأقليات (نحو ثلث المسلمين: 336 - 374 مليوناً)</h4>
+              <ul class="text-xs sm:text-sm text-slate-700 space-y-2 leading-relaxed">
+                <li>• <strong>آسيا (75.4% من الأقليات):</strong> أبرزها الصين (~100 مليون) والهند (90 مليوناً رسمياً إلى 150 مليوناً).</li>
+                <li>• <strong>أوروبا:</strong> 66 مليوناً (بنسبة 9% من سكان أوروبا).</li>
+                <li>• <strong>أفريقيا:</strong> 44 مليوناً، و<strong>أمريكا وأستراليا:</strong> 13 مليوناً.</li>
+              </ul>
+            </div>
+            <div class="bg-goldBg rounded-2xl p-5 border border-goldSoft/50">
+              <span class="inline-block bg-goldHeritage text-white text-xs font-bold px-3 py-1 rounded-full mb-3">معيار النفوذ السياسي</span>
+              <h4 class="text-base sm:text-lg font-bold text-goldHeritage mb-2">أغلبية عددية بلا نفوذ سياسي فاعل</h4>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">قد يشكل المسلمون أغلبية عددية لكنهم يُصنفون كأقلية مستضعفة لعدم مشاركتهم في السلطة وصناعة القرار.</p>
+              <div class="bg-white rounded-xl p-3.5 border border-slate-200 text-xs space-y-1.5">
+                <div>• <strong>إثيوبيا وتنزانيا:</strong> أغلبية أو ثقل عددي كبير تحت حكم أقليات نصرانية هيأها الاستعمار.</div>
+                <div>• <strong>تشاد سابقاً:</strong> أقلية 10% حكمت 90% مسلمين (وتغير الوضع لاحقاً).</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function selectColonial(id) {
+      state.activeColonial = id;
+      const nodes = document.getElementById('colonial-nodes');
+      if (nodes) {
+        nodes.innerHTML = COLONIAL_TOOLS.map(c => `
+          <button type="button" onclick="selectColonial('${c.id}')" class="p-3 rounded-xl text-xs font-bold border transition-all text-center ${
+            c.id === id ? 'bg-emeraldDark text-white border-emeraldDark shadow-sm' : 'bg-white text-slate-700 border-slate-200 hover:border-emeraldMain'
+          }">${c.title}</button>
+        `).join('');
+      }
+
+      const item = COLONIAL_TOOLS.find(c => c.id === id);
+      const detail = document.getElementById('colonial-detail');
+      if (item && detail) {
+        detail.innerHTML = `
+          <span class="inline-block text-xs font-bold bg-goldBg text-goldHeritage px-3 py-1 rounded-full border border-goldSoft/40 mb-3">تحليل آلية استعمارية</span>
+          <h4 class="text-xl sm:text-2xl font-bold text-emeraldDark mb-4">${item.title}</h4>
+          <div class="space-y-3.5 text-xs sm:text-sm leading-relaxed">
+            <div class="bg-white rounded-xl p-4 border-r-4 border-goldSoft shadow-sm">
+              <div class="text-xs font-bold text-goldHeritage mb-1">1. الوسيلة الاستعمارية:</div>
+              <div class="text-slate-700">${item.tool}</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 border-r-4 border-red-600 shadow-sm">
+              <div class="text-xs font-bold text-red-700 mb-1">2. الهدف الاستعماري:</div>
+              <div class="text-slate-800 font-semibold">${item.goal}</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 border-r-4 border-emeraldMain shadow-sm">
+              <div class="text-xs font-bold text-emeraldDark mb-1">3. كيفية المواجهة وفق الكتاب:</div>
+              <div class="text-slate-700">${item.counter}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function setTimelineMode(mode) {
+      state.timelineMode = mode;
+      ['palestine', 'ummah'].forEach(m => {
+        const b = document.getElementById('tl-btn-' + m);
+        if (b) {
+          b.className = 'tl-mode-btn px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ' + (
+            m === mode ? 'bg-emeraldDark text-white border-emeraldDark' : 'bg-cream text-slate-700 border-slate-200 hover:border-emeraldMain'
+          );
+        }
+      });
+
+      const list = TIMELINE_DATA[mode] || [];
+      const wrap = document.getElementById('timeline-container');
+      if (wrap) {
+        wrap.innerHTML = list.map(ev => `
+          <div class="relative bg-cream rounded-2xl p-4 border border-slate-200/80 hover:border-emeraldMain/50 transition-all">
+            <span class="absolute -right-[33px] top-5 w-4 h-4 rounded-full bg-emeraldDark border-4 border-amber-200"></span>
+            <span class="inline-block text-xs font-extrabold text-goldHeritage bg-goldBg px-2.5 py-0.5 rounded-full mb-1.5 border border-goldSoft/40">${ev.year}</span>
+            <h5 class="font-bold text-emeraldDark text-sm sm:text-base mb-1">${ev.title}</h5>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${ev.desc}</p>
+          </div>
+        `).join('');
+      }
+    }
+
+    // =========================================================================
+    // القسم 3: بطاقات المراجعة التفاعلية
+    // =========================================================================
+    function renderFlashcardFilters() {
+      const filters = [
+        { id: 'all', label: `الكل (${FLASHCARDS.length})` },
+        { id: 1, label: 'الوحدة 1' },
+        { id: 2, label: 'الوحدة 2' },
+        { id: 3, label: 'الوحدة 3' },
+        { id: 4, label: 'الوحدة 4' },
+        { id: 5, label: 'الوحدة 5' }
+      ];
+      const wrap = document.getElementById('fc-filters');
+      if (!wrap) return;
+      wrap.innerHTML = filters.map(f => `
+        <button type="button" onclick="filterFlashcards('${f.id}')" class="px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
+          String(state.fcFilter) === String(f.id)
+            ? 'bg-emeraldDark text-white border-emeraldDark'
+            : 'bg-white text-slate-700 border-slate-200 hover:border-emeraldMain'
+        }">${f.label}</button>
+      `).join('');
+    }
+
+    function filterFlashcards(unitId) {
+      state.fcFilter = unitId;
+      state.fcList = unitId === 'all' ? [...FLASHCARDS] : FLASHCARDS.filter(c => c.unit === Number(unitId));
+      state.fcIndex = 0;
+      state.fcFlipped = false;
+      renderFlashcardFilters();
+      renderCurrentCard();
+    }
+
+    function shuffleFlashcards() {
+      for (let i = state.fcList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [state.fcList[i], state.fcList[j]] = [state.fcList[j], state.fcList[i]];
+      }
+      state.fcIndex = 0;
+      state.fcFlipped = false;
+      renderCurrentCard();
+      showToast('تم خلط البطاقات عشوائياً!');
+    }
+
+    function renderCurrentCard() {
+      const card = state.fcList[state.fcIndex];
+      if (!card) return;
+      const badge = document.getElementById('fc-unit-badge');
+      const counter = document.getElementById('fc-counter');
+      const front = document.getElementById('fc-front-text');
+      const back = document.getElementById('fc-back-text');
+      const inner = document.getElementById('fc-inner');
+      const mCount = document.getElementById('fc-mastered-count');
+      const st = document.getElementById('fc-status-label');
+
+      if (badge) badge.textContent = `الوحدة ${card.unit}`;
+      if (counter) counter.textContent = `${state.fcIndex + 1} / ${state.fcList.length}`;
+      if (front) front.textContent = card.q;
+      if (back) back.textContent = card.a;
+      if (inner) inner.classList.toggle('rotate-y-180', state.fcFlipped);
+      if (mCount) mCount.textContent = state.fcMastered.size;
+
+      if (st) {
+        if (state.fcMastered.has(card.id)) {
+          st.textContent = 'الحالة: متقَنة ✓';
+          st.className = 'text-xs font-bold text-emeraldMain';
+        } else if (state.fcReview.has(card.id)) {
+          st.textContent = 'الحالة: أحتاج مراجعتها ↻';
+          st.className = 'text-xs font-bold text-amber-700';
+        } else {
+          st.textContent = 'لم تُقيّم بعد';
+          st.className = 'text-xs font-bold text-slate-400';
+        }
+      }
+    }
+
+    function flipCard() {
+      state.fcFlipped = !state.fcFlipped;
+      const inner = document.getElementById('fc-inner');
+      if (inner) inner.classList.toggle('rotate-y-180', state.fcFlipped);
+    }
+
+    function markFlashcard(status) {
+      const card = state.fcList[state.fcIndex];
+      if (!card) return;
+      if (status === 'mastered') {
+        state.fcMastered.add(card.id);
+        state.fcReview.delete(card.id);
+      } else {
+        state.fcReview.add(card.id);
+        state.fcMastered.delete(card.id);
+      }
+      updateGlobalProgress();
+      renderCurrentCard();
+      setTimeout(() => {
+        if (state.fcIndex < state.fcList.length - 1) nextCard();
+      }, 260);
+    }
+
+    function nextCard() {
+      state.fcIndex = (state.fcIndex + 1) % state.fcList.length;
+      state.fcFlipped = false;
+      renderCurrentCard();
+    }
+
+    function prevCard() {
+      state.fcIndex = (state.fcIndex - 1 + state.fcList.length) % state.fcList.length;
+      state.fcFlipped = false;
+      renderCurrentCard();
+    }
+
+    // =========================================================================
+    // القسم 4: نماذج المذاكرات المقالية + الأسئلة الموضوعية المتدرجة
+    // =========================================================================
+    function switchPracticeMode(mode) {
+      state.practiceMode = mode;
+      const eWrap = document.getElementById('practice-essays-wrap');
+      const mWrap = document.getElementById('practice-mcqs-wrap');
+      const eBtn = document.getElementById('pmode-essays');
+      const mBtn = document.getElementById('pmode-mcqs');
+
+      if (eWrap) eWrap.classList.toggle('hidden', mode !== 'essays');
+      if (mWrap) mWrap.classList.toggle('hidden', mode !== 'mcqs');
+
+      if (eBtn) {
+        eBtn.className = 'py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ' + (
+          mode === 'essays' ? 'bg-emeraldDark text-white shadow-sm' : 'bg-cream text-slate-700 hover:bg-emeraldLight/50'
+        );
+      }
+      if (mBtn) {
+        mBtn.className = 'py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ' + (
+          mode === 'mcqs' ? 'bg-emeraldDark text-white shadow-sm' : 'bg-cream text-slate-700 hover:bg-emeraldLight/50'
+        );
+      }
+    }
+
+    function selectEssayQuiz(qId) {
+      state.activeEssayQuiz = qId;
+      renderEssayQuizzes();
+    }
+
+    function getEssayQuestionScore(question) {
+      let sum = 0;
+      question.rubric.forEach((r, idx) => {
+        if (state.essayChecked[`${question.id}_${idx}`]) sum += r.pts;
+      });
+      return sum;
+    }
+
+    function renderEssayQuizzes() {
+      const tabsWrap = document.getElementById('essay-quiz-tabs');
+      const contentWrap = document.getElementById('essay-quiz-content');
+      if (!tabsWrap || !contentWrap) return;
+
+      tabsWrap.innerHTML = ESSAY_QUIZZES.map(qz => {
+        const active = qz.id === state.activeEssayQuiz;
+        const totalScore = qz.questions.reduce((acc, q) => acc + getEssayQuestionScore(q), 0);
+        return `
+          <button type="button" onclick="selectEssayQuiz('${qz.id}')" class="p-3.5 rounded-2xl border-2 text-right transition-all ${
+            active ? 'bg-emeraldDark text-white border-emeraldDark shadow-md' : 'bg-white text-slateText border-slate-200 hover:border-emeraldMain/60'
+          }">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full ${active ? 'bg-white/20 text-amber-200' : 'bg-goldBg text-goldHeritage'}">${qz.badge}</span>
+              <span class="text-xs font-extrabold ${active ? 'text-amber-200' : 'text-emeraldDark'}">${totalScore} / 20</span>
+            </div>
+            <div class="font-bold text-sm">${qz.title}</div>
+          </button>
+        `;
+      }).join('');
+
+      const quiz = ESSAY_QUIZZES.find(q => q.id === state.activeEssayQuiz) || ESSAY_QUIZZES[0];
+      const quizTotal = quiz.questions.reduce((acc, q) => acc + getEssayQuestionScore(q), 0);
+
+      contentWrap.innerHTML = `
+        <div class="bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+
+            <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-emeraldDark">${quiz.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">${quiz.subtitle} — اكتب إجابتك ثم اضغط لإظهار الإجابة النموذجية وتقييم نفسك.</p>
+          </div>
+          <div class="bg-emeraldLight/70 border border-emeraldMain/30 px-5 py-3 rounded-2xl text-center shrink-0 self-start md:self-center">
+            <div class="text-xs font-bold text-emeraldDark">مجموعك في المذاكرة</div>
+            <div class="text-2xl font-extrabold text-emeraldDark mt-0.5">${quizTotal} <span class="text-base text-goldHeritage">/ 20</span></div>
+          </div>
+        </div>
+
+        ${quiz.questions.map((q, qIdx) => {
+          const revealed = !!state.essayRevealed[q.id];
+          const qScore = getEssayQuestionScore(q);
+          const savedVal = state.essayUserText[q.id] || '';
+          return `
+            <div class="bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/80 shadow-sm">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="bg-emeraldDark text-white text-xs font-bold px-3 py-1 rounded-full">السؤال ${qIdx === 0 ? 'الأول' : 'الثاني'} (${q.marks} درجات)</span>
+                <span class="text-xs font-extrabold ${qScore > 0 ? 'text-emeraldMain' : 'text-slate-400'}">درجتك: ${qScore} / ${q.marks}</span>
+              </div>
+              <h4 class="text-sm sm:text-base md:text-lg font-bold text-slateText mb-4 leading-relaxed">${q.text}</h4>
+
+              <label class="block text-xs font-bold text-slate-500 mb-1.5">مساحة إجابتك:</label>
+              <textarea rows="4" oninput="state.essayUserText['${q.id}'] = this.value" placeholder="اكتب إجابتك هنا بنقاط منظمة..." class="w-full rounded-2xl border border-slate-300 bg-cream/60 p-3.5 text-sm text-slateText focus:outline-none focus:border-emeraldMain focus:bg-white transition-all">${savedVal}</textarea>
+
+              <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                <button type="button" onclick="toggleModelAnswer('${q.id}')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all ${
+                  revealed ? 'bg-slate-100 text-slate-700 hover:bg-slate-200' : 'bg-emeraldDark text-white hover:bg-emeraldMain shadow-sm'
+                }">
+                  ${revealed ? 'إخفاء الإجابة النموذجية ▴' : 'إظهار الإجابة النموذجية وتقييم نفسي ✓'}
+                </button>
+                ${revealed ? '<span class="text-xs text-goldHeritage font-bold">ضع علامة (✓) أمام النقاط التي ذكرتها لحساب درجتك تلقائياً:</span>' : ''}
+              </div>
+
+              ${revealed ? `
+                <div class="mt-4 bg-emeraldLight/50 rounded-2xl p-4 md:p-5 border border-emeraldMain/30 space-y-2.5">
+                  <div class="text-xs sm:text-sm font-extrabold text-emeraldDark mb-2">عناصر الإجابة النموذجية الموثقة وتوزيع الدرجات:</div>
+                  ${q.rubric.map((r, rIdx) => {
+                    const chkKey = `${q.id}_${rIdx}`;
+                    const checked = !!state.essayChecked[chkKey];
+                    return `
+                      <label class="flex items-start gap-3 p-3 rounded-xl bg-white border ${checked ? 'border-emeraldMain bg-emeraldLight/30' : 'border-slate-200'} cursor-pointer transition-all">
+                        <input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleRubricCheck('${chkKey}')" class="mt-1 w-4 h-4 accent-emerald-700 shrink-0" />
+                        <div class="flex-1 text-xs sm:text-sm text-slate-800 leading-relaxed">${r.text}</div>
+                        <span class="text-xs font-extrabold bg-goldBg text-goldHeritage px-2.5 py-1 rounded-lg border border-goldSoft/40 shrink-0">${r.pts} د</span>
+                      </label>
+                    `;
+                  }).join('')}
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('')}
+      `;
+    }
+
+    function toggleModelAnswer(qId) {
+      state.essayRevealed[qId] = !state.essayRevealed[qId];
+      renderEssayQuizzes();
+    }
+
+    function toggleRubricCheck(chkKey) {
+      state.essayChecked[chkKey] = !state.essayChecked[chkKey];
+      renderEssayQuizzes();
+    }
+
+    function selectPracticeLevel(level) {
+      state.practiceLevel = level;
+      ['all', 'easy', 'medium', 'hard'].forEach(l => {
+        const btn = document.getElementById('lvl-' + l);
+        if (btn) {
+          btn.className = 'lvl-btn p-3.5 rounded-2xl border-2 text-right transition-all ' + (
+            l === level
+              ? 'bg-emeraldDark text-white border-emeraldDark shadow-md'
+              : 'bg-white text-slateText border-slate-200 hover:border-emeraldMain/60'
+          );
+        }
+      });
+      renderPracticeQuestions();
+    }
+
+    function renderPracticeQuestions() {
+      const wrap = document.getElementById('practice-container');
+      if (!wrap) return;
+
+      const list = state.practiceLevel === 'all'
+        ? PRACTICE_QUESTIONS
+        : PRACTICE_QUESTIONS.filter(q => q.level === state.practiceLevel);
+
+      wrap.innerHTML = list.map((item, idx) => {
+        const chosen = state.practiceAnswers[item.id];
+        const hasAnswered = chosen !== undefined;
+        const isCorrect = chosen === item.correct;
+        const lvlBadgeCls = item.level === 'easy'
+          ? 'bg-emeraldLight text-emeraldDark'
+          : (item.level === 'medium' ? 'bg-goldBg text-goldHeritage' : 'bg-red-50 text-red-700');
+
+        return `
+          <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200/80">
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-bold text-slate-500">سؤال ${idx + 1} من ${list.length}</span>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${lvlBadgeCls}">المستوى: ${item.levelLabel}</span>
+            </div>
+            <h4 class="font-bold text-sm sm:text-base md:text-lg text-slateText leading-snug mb-4">${item.q}</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${item.options.map((opt, oIdx) => {
+                let cls = 'bg-cream border-slate-200 text-slate-700 hover:border-emeraldMain';
+                if (hasAnswered) {
+                  if (oIdx === item.correct) cls = 'bg-emeraldLight border-emeraldMain text-emeraldDark font-bold';
+                  else if (oIdx === chosen) cls = 'bg-red-50 border-red-400 text-red-800 font-bold';
+                  else cls = 'bg-slate-50 border-slate-200 text-slate-400';
+                }
+                return `
+                  <button type="button" onclick="answerPractice('${item.id}', ${oIdx})" class="p-3.5 rounded-xl border-2 text-right text-xs sm:text-sm transition-all ${cls}">
+                    ${opt}
+                  </button>
+                `;
+              }).join('')}
+            </div>
+            ${hasAnswered ? `
+              <div class="mt-4 p-4 rounded-2xl text-xs sm:text-sm leading-relaxed border ${
+                isCorrect ? 'bg-emeraldLight/70 border-emeraldMain/40 text-emeraldDark' : 'bg-red-50 border-red-200 text-red-900'
+              }">
+                <div class="font-extrabold mb-1">${isCorrect ? '✓ إجابة صحيحة' : '✗ إجابة غير صحيحة — سبب الخطأ:'}</div>
+                <div>${isCorrect ? item.correctMsg : item.wrongReasons[chosen]}</div>
+                ${!isCorrect ? `<div class="mt-2 pt-2 border-t border-red-200/70 text-emeraldDark font-bold">الإجابة الصحيحة: ${item.options[item.correct]}</div>` : ''}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function answerPractice(qId, optIdx) {
+      state.practiceAnswers[qId] = optIdx;
+      renderPracticeQuestions();
+      updateGlobalProgress();
+    }
+
+    // =========================================================================
+    // القسم 5: الاختبار النهائي والتشخيص الذكي
+    // =========================================================================
+    function renderExam() {
+      const wrap = document.getElementById('exam-questions-wrap');
+      if (!wrap) return;
+      wrap.innerHTML = EXAM_QUESTIONS.map((item, idx) => {
+        const chosen = state.examAnswers[idx];
+        return `
+          <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-slate-200/80">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-bold bg-emeraldLight text-emeraldDark px-3 py-1 rounded-full">السؤال ${idx + 1} من 15</span>
+              <span class="text-xs font-semibold text-goldHeritage">الوحدة ${item.unit}: ${item.topic}</span>
+            </div>
+            <h4 class="font-bold text-sm sm:text-base md:text-lg text-slateText mb-4 leading-snug">${item.q}</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${item.options.map((opt, oIdx) => `
+                <button type="button" onclick="selectExamAnswer(${idx}, ${oIdx})" class="p-3.5 rounded-xl border-2 text-right text-xs sm:text-sm transition-all ${
+                  chosen === oIdx
+                    ? 'bg-emeraldDark text-white border-emeraldDark font-bold shadow-sm'
+                    : 'bg-cream text-slate-700 border-slate-200 hover:border-emeraldMain'
+                }">${opt}</button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+      updateExamProgress();
+    }
+
+    function selectExamAnswer(qIdx, oIdx) {
+      if (state.examSubmitted) return;
+      state.examAnswers[qIdx] = oIdx;
+      renderExam();
+      updateGlobalProgress();
+    }
+
+    function updateExamProgress() {
+      const count = Object.keys(state.examAnswers).length;
+      const cntEl = document.getElementById('exam-answered-count');
+      const barEl = document.getElementById('exam-progress-bar');
+      if (cntEl) cntEl.textContent = `${count} / 15`;
+      if (barEl) barEl.style.width = `${(count / 15) * 100}%`;
+    }
+
+    function submitExam() {
+      const count = Object.keys(state.examAnswers).length;
+      if (count < 15) {
+        showToast(`يرجى الإجابة عن جميع الأسئلة أولاً (متبقي ${15 - count} أسئلة).`);
+        return;
+      }
+      state.examSubmitted = true;
+      updateGlobalProgress();
+
+      let score = 0;
+      const unitStats = {
+        1: { correct: 0, total: 0, weakTopics: [] },
+        2: { correct: 0, total: 0, weakTopics: [] },
+        3: { correct: 0, total: 0, weakTopics: [] },
+        4: { correct: 0, total: 0, weakTopics: [] },
+        5: { correct: 0, total: 0, weakTopics: [] }
+      };
+
+      EXAM_QUESTIONS.forEach((q, idx) => {
+        unitStats[q.unit].total++;
+        if (state.examAnswers[idx] === q.correct) {
+          score++;
+          unitStats[q.unit].correct++;
+        } else if (!unitStats[q.unit].weakTopics.includes(q.topic)) {
+          unitStats[q.unit].weakTopics.push(q.topic);
+        }
+      });
+
+      const pct = Math.round((score / 15) * 100);
+      let grade = 'يحتاج مراجعة';
+      let gradeColor = 'text-red-700 bg-red-50 border-red-200';
+      if (pct >= 90) { grade = 'ممتاز'; gradeColor = 'text-emeraldDark bg-emeraldLight border-emeraldMain'; }
+      else if (pct >= 75) { grade = 'جيد جداً'; gradeColor = 'text-emeraldMain bg-emeraldLight border-emeraldMain/50'; }
+      else if (pct >= 60) { grade = 'جيد'; gradeColor = 'text-goldHeritage bg-goldBg border-goldSoft'; }
+
+      const weakUnits = Object.entries(unitStats).filter(([, st]) => st.correct < st.total);
+
+      document.getElementById('exam-questions-wrap').classList.add('hidden');
+      document.getElementById('exam-submit-wrap').classList.add('hidden');
+      const resWrap = document.getElementById('exam-results-wrap');
+      resWrap.classList.remove('hidden');
+
+      resWrap.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200/80 text-center">
+          <span class="inline-block px-4 py-1.5 rounded-full text-sm font-bold border ${gradeColor} mb-3">التقدير: ${grade}</span>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-emeraldDark">${score} / 15 <span class="text-goldHeritage">(${pct}%)</span></h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2">فيما يلي تحليل تفصيلي لأدائك في الوحدات الخمس والمواضيع المقترحة للمراجعة.</p>
+          <button type="button" onclick="resetExam()" class="mt-5 px-6 py-2.5 rounded-xl bg-cream border border-slate-300 text-sm font-bold text-slate-700 hover:border-emeraldDark hover:text-emeraldDark transition-all">
+            إعادة الاختبار من جديد ↻
+          </button>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-200/80">
+          <h4 class="text-lg sm:text-xl font-bold text-emeraldDark mb-4">تحليل الأداء حسب الوحدات الخمس</h4>
+          <div class="space-y-3.5">
+            ${UNITS_DATA.map(u => {
+              const st = unitStats[u.id];
+              const uPct = Math.round((st.correct / st.total) * 100);
+              const barColor = uPct === 100 ? 'bg-emeraldMain' : (uPct >= 66 ? 'bg-goldSoft' : 'bg-red-500');
+              return `
+                <div>
+                  <div class="flex justify-between text-xs sm:text-sm font-bold mb-1">
+                    <span>${u.shortTitle}: ${u.title}</span>
+                    <span class="${uPct === 100 ? 'text-emeraldMain' : 'text-slate-700'}">${st.correct} / ${st.total} (${uPct}%)</span>
+                  </div>
+                  <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                    <div class="h-full ${barColor} rounded-full" style="width: ${uPct}%"></div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-200/80">
+          <h4 class="text-lg sm:text-xl font-bold text-emeraldDark mb-3">المواضيع التي تحتاج لمراجعتها</h4>
+          ${weakUnits.length === 0 ? `
+            <div class="bg-emeraldLight/70 text-emeraldDark p-5 rounded-2xl font-bold text-center text-sm sm:text-base">
+              🎉 ما شاء الله! أتقنت جميع الوحدات الخمس دون أي خطأ.
+            </div>
+          ` : `
+            <div class="space-y-3">
+              ${weakUnits.map(([uId, st]) => {
+                const uObj = UNITS_DATA.find(x => x.id === Number(uId));
+                return `
+                  <div class="bg-goldBg/80 rounded-2xl p-4 border border-goldSoft/40 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div>
+                      <div class="font-bold text-emeraldDark text-sm md:text-base">${uObj.shortTitle}: ${uObj.title}</div>
+                      <div class="text-xs text-slate-700 mt-1"><strong>المواضيع المقترحة:</strong> ${st.weakTopics.join('، ')}</div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 shrink-0">
+                      <button type="button" onclick="goToUnit(${uObj.id})" class="px-3.5 py-2 rounded-xl bg-emeraldDark text-white text-xs font-bold hover:bg-emeraldMain transition-all">اذهب لمراجعة هذه الوحدة</button>
+                      <button type="button" onclick="goToUnitFlashcards(${uObj.id})" class="px-3.5 py-2 rounded-xl bg-white text-emeraldDark border border-emeraldDark/30 text-xs font-bold hover:bg-emeraldLight transition-all">راجع بطاقات الوحدة</button>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `}
+        </div>
+
+        <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-sm border border-slate-200/80">
+          <h4 class="text-lg sm:text-xl font-bold text-emeraldDark mb-4">مراجعة الإجابات والتعليل الموثق</h4>
+          <div class="space-y-3.5">
+            ${EXAM_QUESTIONS.map((q, idx) => {
+              const userAns = state.examAnswers[idx];
+              const ok = userAns === q.correct;
+              return `
+                <div class="p-4 rounded-2xl border ${ok ? 'bg-emeraldLight/40 border-emeraldMain/30' : 'bg-red-50/70 border-red-200'}">
+                  <div class="font-bold text-xs sm:text-sm text-slateText mb-2">${idx + 1}. ${q.q}</div>
+                  <div class="text-xs space-y-1">
+                    <div>إجابتك: <strong class="${ok ? 'text-emeraldDark' : 'text-red-700'}">${q.options[userAns]} ${ok ? '✓' : '✗'}</strong></div>
+                    ${!ok ? `<div>الإجابة الصحيحة: <strong class="text-emeraldDark">${q.options[q.correct]}</strong></div>` : ''}
+                    <div class="text-slate-600 pt-1"><strong>التعليل:</strong> ${q.exp}</div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetExam() {
+      state.examAnswers = {};
+      state.examSubmitted = false;
+      document.getElementById('exam-results-wrap').classList.add('hidden');
+      document.getElementById('exam-questions-wrap').classList.remove('hidden');
+      document.getElementById('exam-submit-wrap').classList.remove('hidden');
+      renderExam();
+      updateGlobalProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToUnit(unitId) {
+      switchTab('lessons');
+      selectUnit(unitId);
+    }
+
+    function goToUnitFlashcards(unitId) {
+      switchTab('flashcards');
+      filterFlashcards(unitId);
+    }
+
+    // =========================================================================
+    // تهيئة التطبيق عند التحميل مع حماية ضد أي خطأ
+    // =========================================================================
+    function initApp() {
+      try { renderUnits(); } catch (e) { console.error(e); }
+      try { switchSim(1); selectStrait('suez'); setPopMode('blocs'); selectColonial('secularism'); setTimelineMode('palestine'); } catch (e) { console.error(e); }
+      try { renderFlashcardFilters(); renderCurrentCard(); } catch (e) { console.error(e); }
+      try { switchPracticeMode('essays'); renderEssayQuizzes(); selectPracticeLevel('all'); } catch (e) { console.error(e); }
+      try { renderExam(); } catch (e) { console.error(e); }
+      try { switchTab('lessons'); updateGlobalProgress(); } catch (e) { console.error(e); }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+  </script>
+</body>
+</html>
